@@ -1,13 +1,12 @@
 class Board {
   constructor() {
+    let mazo = this.crearMazo();
     this.flop = [];
     this.turn = {};
     this.river = {};
-    // revisar
     this.pozo = 0;
     this.apuesta = 0;
     this.turno = 0;
-    this.mazo = [];
     this.mejorMano = [];
     this.jugadorFichas = 100;
   }
@@ -29,15 +28,15 @@ class Board {
       "tres",
       "dos"
     ];
-    for (let indicePalo = 0; indiceValor < palos.length; indicePalo++) {
+    let cartas = [];
+
+    for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
       for (let indiceValor = 0; indiceValor < valores.length; indiceValor++) {
-        this.mazo.push({
-          nombre: valores[indiceValor] + "de " + palos[indicePalo]
+        cartas.push({
+          nombre: valores[indiceValor] + " de " + palos[indicePalo]
         });
       }
     }
-    return this.mazo
+    return cartas;
   }
-   
-
 }
