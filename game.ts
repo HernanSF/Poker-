@@ -1,14 +1,14 @@
-class Board {
+class Juego {
   public mazo: Array<object>;
   public pozo: number;
-  public apuesta: number;
+  public jugadores: Array<object>;
   public turno: number;
   public manoJugadores: Array<Array<object>>;
 
   constructor() {
     this.mazo = this.crearMazo();
     this.pozo = 0;
-    this.apuesta = 0;
+    this.jugadores = [];
     this.turno = 0;
     this.manoJugadores = [];
   }
@@ -54,16 +54,44 @@ class Board {
     return this.mazo;
   }
 
+  public crearJugadores(cantidad: number) {
+    for (let i = 0; i < cantidad; i++) {
+      this.jugadores.push({
+        id:i,
+        nombre: "",
+        fichas: 100,
+        manoInicial: [],
+        manoFinal: []
+      });
+      if(i===3){
+        return 
+      }
+    }
+    return this.jugadores
+  }
+
   public repartirCartasJugadores(cantidad: number) {
     let mazoMezclado = this.mezclarMazo();
+    let jugadores = this.crearJugadores(cantidad)
 
     for (let i = 0; i < cantidad; i++) {
-      this.manoJugadores.push([mazoMezclado.shift(), mazoMezclado.shift()]);
+      jugadores[i].manoInicial = mazoMezclado.shift(), mazoMezclado.shift();
     }
-    return this.manoJugadores;
+    return jugadores;
   }
+
+  // public apostar(apuesta: number) {
+  //   this.pozo = this.pozo + apuesta;
+  //   this.fichasJugador = this.fichasJugador - apuesta;
+  // }
+
+  // public rondaApuestas() {
+  //   for (let i = 0; i < this.cantidadJugadores.length; i++) {}
+  // }
 }
 
-let prueba = new Board();
+let prueba = new Juego();
 
-console.log(prueba.repartirCartasJugadores(2));
+// console.log(prueba.repartirCartasJugadores(2));
+// console.log(prueba.apostar(51));
+console.log(prueba.crearJugadores(2));
