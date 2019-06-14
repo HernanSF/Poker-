@@ -1,9 +1,9 @@
 class Board {
-  private mazo: Array<object>;
-  private pozo: number;
-  private apuesta: number;
-  private turno: number;
-  private manoJugadores: Array<Array<object>>;
+  public mazo: Array<object>;
+  public pozo: number;
+  public apuesta: number;
+  public turno: number;
+  public manoJugadores: Array<Array<object>>;
 
   constructor() {
     this.mazo = this.crearMazo();
@@ -13,7 +13,7 @@ class Board {
     this.manoJugadores = [];
   }
 
-  private crearMazo() {
+  public crearMazo() {
     let palos = ["corazones", "diamantes", "picas", "treboles"];
     let valores = [
       "As",
@@ -44,24 +44,26 @@ class Board {
     return cartas;
   }
 
-  private mezclarMazo() {
+  public mezclarMazo() {
     for (let indice = 0; indice < this.mazo.length; indice++) {
-      let indiceCartaCambiada = Math.floor(Math.random() * this.mazo.length);
+      let indiceCartaCambiada = Math.round(Math.random() * this.mazo.length);
       let cartaCambiada = this.mazo[indiceCartaCambiada];
       this.mazo[indiceCartaCambiada] = this.mazo[indice];
       this.mazo[indice] = cartaCambiada;
-      return this.mazo;
     }
+    return this.mazo;
   }
-  private cantidadJugadores(cantidad: number) {
-    this.manoJugadores.length = cantidad;
-    return this.manoJugadores.length
-  }
-  private repartirCartasJugadores() {
-    for (let i = 0; i < this.manoJugadores.length; i++) {
-      this.manoJugadores.push([[this.mazo.shift], [this.mazo.shift]]);
-    }
 
-  return this.manoJugadores
+  public repartirCartasJugadores(cantidad: number) {
+    let mazoMezclado = this.mezclarMazo();
+
+    for (let i = 0; i < cantidad; i++) {
+      this.manoJugadores.push([mazoMezclado.shift(), mazoMezclado.shift()]);
+    }
+    return this.manoJugadores;
   }
 }
+
+let prueba = new Board();
+
+console.log(prueba.repartirCartasJugadores(2));
