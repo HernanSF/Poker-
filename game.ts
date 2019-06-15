@@ -32,6 +32,7 @@ class Juego {
     ];
     let cartas = [];
 
+    
     for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
       for (let indiceValor = 0; indiceValor < valores.length; indiceValor++) {
         cartas.push({
@@ -57,25 +58,25 @@ class Juego {
   public crearJugadores(cantidad: number) {
     for (let i = 0; i < cantidad; i++) {
       this.jugadores.push({
-        id:i,
+        id: i,
         nombre: "",
         fichas: 100,
         manoInicial: [],
         manoFinal: []
       });
-      if(i===3){
-        return 
+      if (i === 3) {
+        return;
       }
     }
-    return this.jugadores
+    return this.jugadores;
   }
 
   public repartirCartasJugadores(cantidad: number) {
     let mazoMezclado = this.mezclarMazo();
-    let jugadores = this.crearJugadores(cantidad)
+    let jugadores = this.crearJugadores(cantidad);
 
     for (let i = 0; i < cantidad; i++) {
-      jugadores[i].manoInicial = mazoMezclado.shift(), mazoMezclado.shift();
+      jugadores[i].manoInicial = [mazoMezclado.shift(), mazoMezclado.shift()];
     }
     return jugadores;
   }
@@ -94,4 +95,4 @@ let prueba = new Juego();
 
 // console.log(prueba.repartirCartasJugadores(2));
 // console.log(prueba.apostar(51));
-console.log(prueba.crearJugadores(2));
+console.log(prueba.crearMazo());
