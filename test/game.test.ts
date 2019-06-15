@@ -82,11 +82,66 @@ describe("flop", () => {
     it("deberia repartir tres cartas a mano de croupier", () => {
         // Arrange
         const game = new Juego();
-        
+
         // Act & Assert
         expect(game.manoCroupier.length).equal(0, "no hay cartas")
         game.flop();
         expect(game.manoCroupier.length).equal(3, "saco tres cartas")
 
     });
+});
+describe("river", () => {
+    it("deberia repartir cuatro cartas a mano de croupier", () => {
+        // Arrange
+        const game = new Juego();
+
+        // Act & Assert
+        expect(game.manoCroupier.length).equal(0, "no hay cartas")
+        game.flop()
+        game.river();
+        expect(game.manoCroupier.length).equal(4, "saque cuatro cartas")
+
+    });
+});
+
+describe("turn", () => {
+    it("deberia repartir cinco cartas a mano de croupier", () => {
+        // Arrange
+        const game = new Juego();
+
+        // Act & Assert
+        expect(game.manoCroupier.length).equal(0, "no hay cartas")
+        game.flop()
+        game.river();
+        game.turn()
+        expect(game.manoCroupier.length).equal(5, "saque cuatro cartas")
+
+    });
+});
+describe("mano de croupier al azar", () => {
+    it("deberia repartir cinco cartas al azar a la mano de croupier", () => {
+        // Arrange
+        const game = new Juego();
+
+        // Act & Assert
+        expect(game.manoCroupier.length).equal(0, "no hay cartas")
+        game.mezclarMazo()
+        game.flop()
+        game.river();
+        game.turn();
+        expect(game.manoCroupier.length).equal(5, "saque cuatro cartas");
+        console.log(game.manoCroupier)
+
+    });
+});
+describe("orden de funciones flop, turn y river", () => {
+    it("deberia impedir que funcione si no es en orden", () => {
+        // Arrange
+        const game = new Juego();
+
+        // Act & Assert
+        expect(game.manoCroupier.length).equal(0, "no hay cartas")
+        game.mezclarMazo()
+        expect(game.river.bind(game)).to.throw();
+  });
 });

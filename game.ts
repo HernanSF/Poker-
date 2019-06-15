@@ -89,7 +89,23 @@ export class Juego {
   }
 
   public flop() {
-    this.manoCroupier = this.manoCroupier.concat(this.mazo.slice(0, 3))
+    if (this.manoCroupier.length === 0) {
+      this.manoCroupier = this.manoCroupier.concat(this.mazo.slice(0, 3))
+    }
+  }
+
+  public river() {
+    if (this.manoCroupier.length === 3) {
+      this.manoCroupier = this.manoCroupier.concat(this.mazo.shift())
+    } else {
+      throw new Error();
+    }
+  }
+
+  public turn() {
+    if (this.manoCroupier.length === 4) {
+      this.manoCroupier = this.manoCroupier.concat(this.mazo.shift())
+    }
   }
 
   // public apostar(apuesta: number) {
