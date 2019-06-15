@@ -1,0 +1,28 @@
+{
+  "name": "Poker-",
+  "version": "1.0.0",
+  "description": "first web app =)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register test/**/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HernanSF/Poker-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HernanSF/Poker-/issues"
+  },
+  "homepage": "https://github.com/HernanSF/Poker-#readme",
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "ts-node": "^8.2.0",
+    "typescript": "^3.5.2"
+  }
+}
