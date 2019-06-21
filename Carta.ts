@@ -1,5 +1,5 @@
 export class Carta {
-  public valor: string;
+  public valor: number;
   public palo: string;
   public nombre: string;
 }

@@ -67,10 +67,10 @@ describe("Juego", () => {
             game.repartirCartasJugadores(1);
 
             expect(game.jugadores.length).equal(numeroDeJugadores, "Cantidad de jugadores no es el esperado");
-            expect(game.jugadores[0].manoInicial.length).equal(cartasEnManoEsperadas, "Cartas en mano no son las esperadas");
+            expect(game.jugadores[0].manoTotal.length).equal(cartasEnManoEsperadas, "Cartas en mano no son las esperadas");
             expect(game.mazo.length).equal(cartasRestantesEsperadas, "Cartas restantes en el mazo no son las esperadas");
 
-            game.jugadores[0].manoInicial.forEach(carta => {
+            game.jugadores[0].manoTotal.forEach(carta => {
                 const cartaDelMazo = game.mazo.find(cartaMazo => cartaMazo.nombre === carta.nombre);
                 expect(cartaDelMazo).not.exist;
             });
