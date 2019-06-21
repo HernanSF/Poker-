@@ -26,7 +26,7 @@ export class Juego {
   public crearMazo(): Array<Carta> {
     let palos = ["corazones", "diamantes", "picas", "treboles"];
     let valores = [
-      { nombre: "As", valor: 1 },
+      { nombre: "As", valor: 14 },
       { nombre: "Rey", valor: 13 },
       { nombre: "Reina", valor: 12 },
       { nombre: "Jota", valor: 11 },
@@ -70,15 +70,12 @@ export class Juego {
   // Assign quantity of players (this game should support up to 4 players top)
 
   public crearJugadores(cantidad: number): Array<Jugador> {
+
     for (let i = 0; i < cantidad; i++) {
-      this.jugadores.push({
-        id: i,
-        nombre: "",
-        fichas: 100,
-        manoTotal: [],
-        manoFinal: []
-      });
-      if (i === 3) {
+      let player = new Jugador();
+      player.id = i
+      this.jugadores.push(player);
+      if (i === 4) {
         return;
       }
     }
@@ -125,7 +122,7 @@ export class Juego {
     }
   }
 
-  // draw stage 
+  // draw stage
   // after the last round of bets should end the cicle of one play
 
   public turn() {
@@ -143,12 +140,12 @@ export class Juego {
     }
   }
 
-// ending of round, this should choose a winner who gets all the bets
-// if there is a tie then the well gets divided among the players (the ones that have tied)
-// after this, the cicle resets 
+  // ending of round, this should choose a winner who gets all the bets
+  // if there is a tie then the well gets divided among the players (the ones that have tied)
+  // after this, the cicle resets
 
-  public elegirManoGanadora(manoPrueba: Array<Carta>): Array<Carta> {
-    manoPrueba.sort((a, b) => a.valor - b.valor);
+  public elegirManoGanadora(mano: Array<Carta>): Array<Carta> {
+    mano.sort((a, b) => a.valor - b.valor);
 
     return manoPrueba;
   }
@@ -156,7 +153,6 @@ export class Juego {
   // here will be a function that checks if there are players with 0 "fichas"
   // if that happens, that player gets eliminated from the game
   // when there is only one player on the board, the game finishes, he or she wins
-
 
   //ideas for betting functions
 
@@ -176,7 +172,7 @@ prueba.crearMazo();
 prueba.mezclarMazo();
 let manoPrueba = prueba.mazo.splice(0, 7);
 console.log(prueba.elegirManoGanadora(manoPrueba));
-// prueba.crearJugadores(2);
+// console.log(prueba.crearJugadores(3));
 // prueba.repartirCartasJugadores();
 // console.log(prueba.jugadores)
 // prueba.flop();

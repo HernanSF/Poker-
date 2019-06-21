@@ -6,4 +6,7 @@ export class Jugador {
   fichas: number;
   manoTotal: Array<Carta>;
   manoFinal: Array<Carta>;
+  combo: string;
+  mejorCarta: number;
+  gano: boolean;
 }
