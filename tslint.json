@@ -1,0 +1,22 @@
+{
+    "linterOptions": {
+        "exclude": [
+            "node_modules",
+            ".vscode",
+            "lib"
+        ]
+    },
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended",
+        "tslint-no-unused-expression-chai"
+    ],
+    "jsRules": {},
+    "rules": {
+        "max-line-length": false,
+        "no-console": {
+            "severity": "warning",
+            "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+        }
+    }
+}

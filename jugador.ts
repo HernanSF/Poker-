@@ -1,12 +1,12 @@
 import { Carta } from "./carta";
 
 export class Jugador {
-  id: number;
-  nombre: string;
-  fichas: number;
-  manoTotal: Array<Carta>;
-  manoFinal: Array<Carta>;
-  combo: string;
-  mejorCarta: number;
-  gano: boolean;
+  public id: number;
+  public nombre: string;
+  public fichas: number = 100;
+  public manoTotal: Carta[] = [];
+  public manoFinal: Carta[] = [];
+  public combo: string ;
+  public mejorCarta: number;
+  public gano: boolean = false;
 }

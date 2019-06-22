@@ -1,15 +1,15 @@
 import { Carta } from "./carta";
 import { Jugador } from "./jugador";
 
-//we are creating a game of texas hold'em
+// we are creating a game of texas hold'em
 
 export class Juego {
-  public mazo: Array<Carta>;
+  public mazo: Carta[];
   public pozo: number;
-  public jugadores: Array<Jugador>;
+  public jugadores: Jugador[];
   public turno: number;
   public mezclado: boolean;
-  public manoCroupier: Array<Carta>;
+  public manoCroupier: Carta[];
 
   constructor() {
     this.mazo = [];
@@ -23,9 +23,9 @@ export class Juego {
   // we should create a deck of cards with this
   // texas hold'em use a spanish deck
 
-  public crearMazo(): Array<Carta> {
-    let palos = ["corazones", "diamantes", "picas", "treboles"];
-    let valores = [
+  public crearMazo(): Carta[] {
+    const palos = ["corazones", "diamantes", "picas", "treboles"];
+    const valores = [
       { nombre: "As", valor: 14 },
       { nombre: "Rey", valor: 13 },
       { nombre: "Reina", valor: 12 },
@@ -38,12 +38,12 @@ export class Juego {
       { nombre: "Cinco", valor: 5 },
       { nombre: "Cuatro", valor: 4 },
       { nombre: "Tres", valor: 3 },
-      { nombre: "Dos", valor: 2 }
+      { nombre: "Dos", valor: 2 },
     ];
 
     for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
       for (let indiceValor = 0; indiceValor < valores.length; indiceValor++) {
-        let carta = new Carta();
+        const carta = new Carta();
         carta.nombre = valores[indiceValor].nombre + " de " + palos[indicePalo];
         carta.valor = valores[indiceValor].valor;
         carta.palo = palos[indicePalo];
@@ -56,10 +56,10 @@ export class Juego {
   // now we shuffle the deck
   // this should start the cicle of a round in texas hold'em
 
-  public mezclarMazo(): Array<Carta> {
+  public mezclarMazo(): Carta[] {
     for (let indice = 0; indice < this.mazo.length; indice++) {
-      let indiceCartaCambiada = Math.round(Math.random() * this.mazo.length);
-      let cartaCambiada = this.mazo[indiceCartaCambiada];
+      const indiceCartaCambiada = Math.round(Math.random() * this.mazo.length);
+      const cartaCambiada = this.mazo[indiceCartaCambiada];
       this.mazo[indiceCartaCambiada] = this.mazo[indice];
       this.mazo[indice] = cartaCambiada;
     }
@@ -69,11 +69,11 @@ export class Juego {
 
   // Assign quantity of players (this game should support up to 4 players top)
 
-  public crearJugadores(cantidad: number): Array<Jugador> {
+  public crearJugadores(cantidad: number): Jugador[] {
 
     for (let i = 0; i < cantidad; i++) {
-      let player = new Jugador();
-      player.id = i
+      const player = new Jugador();
+      player.id = i;
       this.jugadores.push(player);
       if (i === 4) {
         return;
@@ -87,13 +87,17 @@ export class Juego {
   // first stage is dealing two cards to each player in the board
   // draw stage
 
-  public repartirCartasJugadores(): Array<Jugador> {
-    for (let i = 0; i < this.jugadores.length; i++) {
-      let carta1 = this.mazo.shift();
-      let carta2 = this.mazo.shift();
+  public repartirCartasJugadores(): Jugador[] {
+    if (this.mazo.length === 0) {
+      throw new Error("No se pueden repartir cartas a los jugadores. Falta crear el mazo primero.");
+    }
 
-      this.jugadores[i].manoTotal.push(carta1);
-      this.jugadores[i].manoTotal.push(carta2);
+    for (const jugador of this.jugadores) {
+      const carta1 = this.mazo.shift();
+      const carta2 = this.mazo.shift();
+
+      jugador.manoTotal.push(carta1);
+      jugador.manoTotal.push(carta2);
     }
     return this.jugadores;
   }
@@ -106,7 +110,7 @@ export class Juego {
   // the flop
   // draw stage
 
-  public flop(): Array<Carta> {
+  public flop(): Carta[] {
     if (this.manoCroupier.length === 0) {
       this.manoCroupier = this.manoCroupier.concat(this.mazo.slice(0, 3));
     }
@@ -119,6 +123,8 @@ export class Juego {
   public river() {
     if (this.manoCroupier.length === 3) {
       this.manoCroupier = this.manoCroupier.concat(this.mazo.shift());
+    } else {
+      throw new Error();
     }
   }
 
@@ -134,7 +140,7 @@ export class Juego {
         indexJugador++
       ) {
         this.jugadores[indexJugador].manoTotal = this.manoCroupier.concat(
-          this.jugadores[indexJugador].manoTotal
+          this.jugadores[indexJugador].manoTotal,
         );
       }
     }
@@ -144,17 +150,17 @@ export class Juego {
   // if there is a tie then the well gets divided among the players (the ones that have tied)
   // after this, the cicle resets
 
-  public elegirManoGanadora(mano: Array<Carta>): Array<Carta> {
-    mano.sort((a, b) => a.valor - b.valor);
+  // public elegirManoGanadora(mano: Array<Carta>): Array<Carta> {
+  //   mano.sort((a, b) => a.valor - b.valor);
 
-    return manoPrueba;
-  }
+  //   return manoPrueba;
+  // }
 
   // here will be a function that checks if there are players with 0 "fichas"
   // if that happens, that player gets eliminated from the game
   // when there is only one player on the board, the game finishes, he or she wins
 
-  //ideas for betting functions
+  // ideas for betting functions
 
   // public apostar(apuesta: number) {
   //   this.pozo = this.pozo + apuesta;
@@ -165,18 +171,3 @@ export class Juego {
   //   for (let i = 0; i < this.cantidadJugadores.length; i++) {}
   // }
 }
-
-let prueba = new Juego();
-
-prueba.crearMazo();
-prueba.mezclarMazo();
-let manoPrueba = prueba.mazo.splice(0, 7);
-console.log(prueba.elegirManoGanadora(manoPrueba));
-// console.log(prueba.crearJugadores(3));
-// prueba.repartirCartasJugadores();
-// console.log(prueba.jugadores)
-// prueba.flop();
-// prueba.river();
-// prueba.turn();
-// console.log(prueba.jugadores);
-// console.log(prueba.jugadores[0].manoTotal[0])
