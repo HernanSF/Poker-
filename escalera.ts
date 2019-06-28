@@ -1,7 +1,7 @@
 import { Carta } from "carta";
 
 export class Escalera {
-  public mejorEscalera: Array<Carta> = [];
+  public tiene: Array<Carta> = [];
   public cartaMayor: Carta;
   public nombre: string = "Escalera";
   // check for straight
@@ -14,7 +14,7 @@ export class Escalera {
         mano[i].valor - mano[i + 3].valor === 3 &&
         mano[i].valor - mano[i + 4].valor === 4
       ) {
-        this.mejorEscalera.push(
+        this.tiene.push(
           mano[i],
           mano[i + 1],
           mano[i + 2],
@@ -23,6 +23,18 @@ export class Escalera {
         );
         this.cartaMayor = mano[i];
       }
+    }
+  }
+  checkAlternativa(mano: Array<Carta>) {
+    if (
+      mano[0].valor === 14 &&
+      mano[6].valor === 2 &&
+      mano[5].valor === 3 &&
+      mano[4].valor === 4 &&
+      mano[3].valor === 5
+    ) {
+      this.tiene.push(mano[0], mano[6], mano[5], mano[4], mano[3]);
+      this.cartaMayor = mano[6];
     }
   }
 }
