@@ -1,7 +1,7 @@
 {
   "name": "Poker-",
   "version": "1.0.0",
-  "description": "first web app =)",
+  "description": "Poker game",
   "main": "index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.test.ts",

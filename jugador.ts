@@ -5,8 +5,6 @@ export class Jugador {
   public nombre: string;
   public fichas: number = 100;
   public manoTotal: Carta[] = [];
-  public manoFinal: Carta[] = [];
-  public combo: string ;
-  public mejorCarta: number;
+  public manoFinal: { mano: Carta[], nombre: string, jerarquia: number[] };
   public gano: boolean = false;
 }

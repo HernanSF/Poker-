@@ -38,7 +38,7 @@ export class Juego {
       { nombre: "Cinco", valor: 5 },
       { nombre: "Cuatro", valor: 4 },
       { nombre: "Tres", valor: 3 },
-      { nombre: "Dos", valor: 2 },
+      { nombre: "Dos", valor: 2 }
     ];
 
     for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
@@ -70,7 +70,6 @@ export class Juego {
   // Assign quantity of players (this game should support up to 4 players top)
 
   public crearJugadores(cantidad: number): Jugador[] {
-
     for (let i = 0; i < cantidad; i++) {
       const player = new Jugador();
       player.id = i;
@@ -89,7 +88,9 @@ export class Juego {
 
   public repartirCartasJugadores(): Jugador[] {
     if (this.mazo.length === 0) {
-      throw new Error("No se pueden repartir cartas a los jugadores. Falta crear el mazo primero.");
+      throw new Error(
+        "No se pueden repartir cartas a los jugadores. Falta crear el mazo primero."
+      );
     }
 
     for (const jugador of this.jugadores) {
@@ -140,7 +141,7 @@ export class Juego {
         indexJugador++
       ) {
         this.jugadores[indexJugador].manoTotal = this.manoCroupier.concat(
-          this.jugadores[indexJugador].manoTotal,
+          this.jugadores[indexJugador].manoTotal
         );
       }
     }
@@ -153,7 +154,6 @@ export class Juego {
   // public elegirManoGanadora(mano: Array<Carta>): Array<Carta> {
   //   mano.sort((a, b) => a.valor - b.valor);
 
-  //   return manoPrueba;
   // }
 
   // here will be a function that checks if there are players with 0 "fichas"
@@ -162,9 +162,10 @@ export class Juego {
 
   // ideas for betting functions
 
-  // public apostar(apuesta: number) {
-  //   this.pozo = this.pozo + apuesta;
-  //   this.fichasJugador = this.fichasJugador - apuesta;
+  // public apostar(...apuestas: Array<number>) {
+  // let apuestasActuales = apuestas
+  //  apuestas.forEach(element =>
+  //   this.pozo = this.pozo + element)
   // }
 
   // public rondaApuestas() {
