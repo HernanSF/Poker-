@@ -38,15 +38,13 @@ export class Juego {
       { nombre: "Cinco", valor: 5 },
       { nombre: "Cuatro", valor: 4 },
       { nombre: "Tres", valor: 3 },
-      { nombre: "Dos", valor: 2 }
+      { nombre: "Dos", valor: 2 },
     ];
 
     for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
       for (let indiceValor = 0; indiceValor < valores.length; indiceValor++) {
-        const carta = new Carta();
+        const carta = new Carta(valores[indiceValor].valor, palos[indicePalo]);
         carta.nombre = valores[indiceValor].nombre + " de " + palos[indicePalo];
-        carta.valor = valores[indiceValor].valor;
-        carta.palo = palos[indicePalo];
         this.mazo.push(carta);
       }
     }
@@ -89,7 +87,7 @@ export class Juego {
   public repartirCartasJugadores(): Jugador[] {
     if (this.mazo.length === 0) {
       throw new Error(
-        "No se pueden repartir cartas a los jugadores. Falta crear el mazo primero."
+        "No se pueden repartir cartas a los jugadores. Falta crear el mazo primero.",
       );
     }
 
@@ -141,7 +139,7 @@ export class Juego {
         indexJugador++
       ) {
         this.jugadores[indexJugador].manoTotal = this.manoCroupier.concat(
-          this.jugadores[indexJugador].manoTotal
+          this.jugadores[indexJugador].manoTotal,
         );
       }
     }

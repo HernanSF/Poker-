@@ -1,40 +1,35 @@
-import { Carta } from "carta";
+import { Carta } from "./carta";
+import { Combinacion } from "./combinacion";
 
-export class Escalera {
-  public tiene: Array<Carta> = [];
-  public cartaMayor: Carta;
-  public nombre: string = "Escalera";
-  // check for straight
-  check(mano: Array<Carta>) {
-    for (let i = 0; i < mano.length; i++) {
-      if (
-        i + 4 < 7 &&
-        mano[i].valor - mano[i + 1].valor === 1 &&
-        mano[i].valor - mano[i + 2].valor === 2 &&
-        mano[i].valor - mano[i + 3].valor === 3 &&
-        mano[i].valor - mano[i + 4].valor === 4
-      ) {
-        this.tiene.push(
-          mano[i],
-          mano[i + 1],
-          mano[i + 2],
-          mano[i + 3],
-          mano[i + 4]
-        );
-        this.cartaMayor = mano[i];
-      }
+export class Escalera extends Combinacion {
+
+    protected valorBase: number = 100;
+    public constructor(mano: Carta[], cantidadConsecutivos: number = 5) {
+        super();
+        let index: number = 0;
+        let consecutivos: number = 0;
+        let termine: boolean = false;
+
+        while (consecutivos < cantidadConsecutivos && !termine) {
+            const actual = mano[index].valor;
+            const siguiente = mano[index + 1].valor;
+
+            if (actual - siguiente === 1) {
+                consecutivos++;
+            } else {
+                consecutivos = 0;
+            }
+
+            index++;
+            termine = index > mano.length - 2;
+        }
+
+        if (consecutivos >= cantidadConsecutivos - 1) {
+            this.cartas = mano.splice(index - consecutivos, cantidadConsecutivos);
+            return;
+        }
+
+        this.cartas = [];
     }
-  }
-  checkAlternativa(mano: Array<Carta>) {
-    if (
-      mano[0].valor === 14 &&
-      mano[6].valor === 2 &&
-      mano[5].valor === 3 &&
-      mano[4].valor === 4 &&
-      mano[3].valor === 5
-    ) {
-      this.tiene.push(mano[0], mano[6], mano[5], mano[4], mano[3]);
-      this.cartaMayor = mano[6];
-    }
-  }
+
 }

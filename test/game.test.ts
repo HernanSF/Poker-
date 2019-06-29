@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Carta } from "../Carta";
+import { Carta } from "../carta";
 import { Juego } from "../game";
 
 describe("Juego", () => {
