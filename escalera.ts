@@ -1,9 +1,11 @@
 import { Carta } from "./carta";
-import { Combinacion } from "./combinacion";
+import { Combinacion } from "combinacion";
 
 export class Escalera extends Combinacion {
 
     protected valorBase: number = 100;
+    public valorTotal: number = 0
+
     public constructor(mano: Carta[], cantidadConsecutivos: number = 5) {
         super();
         let index: number = 0;
@@ -29,7 +31,8 @@ export class Escalera extends Combinacion {
             return;
         }
 
-        this.cartas = [];
+        this.cartas = []; //why here?
+        this.valorTotal = this.valorBase + this.cartas[0].valor
     }
 
 }
