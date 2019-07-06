@@ -1,10 +1,11 @@
 {
-  "name": "Poker-",
+  "name": "Poker",
   "version": "1.0.0",
-  "description": "first web app =)",
+  "description": "Poker game",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.test.ts"
+    "test": "mocha -r ts-node/register ./src/test/**/*.test.ts",
+    "lint": "tslint -c ./tslint.json './src/**/*.ts'"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,8 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "ts-node": "^8.2.0",
+    "tslint": "^5.18.0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
     "typescript": "^3.5.2"
   }
 }
