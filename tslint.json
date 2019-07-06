@@ -13,6 +13,7 @@
     ],
     "jsRules": {},
     "rules": {
+        "trailing-comma": false,
         "max-line-length": false,
         "no-console": {
             "severity": "warning",

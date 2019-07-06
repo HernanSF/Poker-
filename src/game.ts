@@ -1,4 +1,4 @@
-import { Carta } from "./carta";
+import { Carta } from "./Carta";
 import { Jugador } from "./jugador";
 
 // we are creating a game of texas hold'em
@@ -38,7 +38,7 @@ export class Juego {
       { nombre: "Cinco", valor: 5 },
       { nombre: "Cuatro", valor: 4 },
       { nombre: "Tres", valor: 3 },
-      { nombre: "Dos", valor: 2 },
+      { nombre: "Dos", valor: 2 }
     ];
 
     for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
@@ -86,9 +86,7 @@ export class Juego {
 
   public repartirCartasJugadores(): Jugador[] {
     if (this.mazo.length === 0) {
-      throw new Error(
-        "No se pueden repartir cartas a los jugadores. Falta crear el mazo primero.",
-      );
+      throw new Error("No se pueden repartir cartas a los jugadores. Falta crear el mazo primero.");
     }
 
     for (const jugador of this.jugadores) {
@@ -133,14 +131,8 @@ export class Juego {
   public turn() {
     if (this.manoCroupier.length === 4) {
       this.manoCroupier = this.manoCroupier.concat(this.mazo.shift());
-      for (
-        let indexJugador = 0;
-        indexJugador < this.jugadores.length;
-        indexJugador++
-      ) {
-        this.jugadores[indexJugador].manoTotal = this.manoCroupier.concat(
-          this.jugadores[indexJugador].manoTotal,
-        );
+      for (let indexJugador = 0; indexJugador < this.jugadores.length; indexJugador++) {
+        this.jugadores[indexJugador].manoTotal = this.manoCroupier.concat(this.jugadores[indexJugador].manoTotal);
       }
     }
   }

@@ -1,5 +1,5 @@
-import { Combinacion } from "combinacion";
-import { Carta } from "carta";
+import { Combinacion } from "./combinacion";
+import { Carta } from "./Carta";
 
 export class Par extends Combinacion {
   protected valorBase: number;
@@ -23,9 +23,6 @@ export class Par extends Combinacion {
     }
     if (iguales === cantidadIguales) {
       this.cartas = mano.splice(index - 1, cantidadIguales);
-      this.cartas.push(mano[0], mano[1], mano[2]);
-      return;
-    } else {
       return;
     }
   }

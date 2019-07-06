@@ -1,11 +1,11 @@
 {
-  "name": "Poker-",
+  "name": "Poker",
   "version": "1.0.0",
   "description": "Poker game",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.test.ts",
-    "lint": "tslint -c tslint.json './**/*.ts'"
+    "test": "mocha -r ts-node/register ./src/test/**/*.test.ts",
+    "lint": "tslint -c ./tslint.json './src/**/*.ts'"
   },
   "repository": {
     "type": "git",
