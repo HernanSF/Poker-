@@ -1,29 +1,9 @@
-import { Combinacion } from "./combinacion";
 import { Carta } from "./Carta";
-
-export class Par extends Combinacion {
+import { CombinacionIguales } from "./CombinacionIguales";
+export class Par extends CombinacionIguales {
   protected valorBase: number;
-
-  public constructor(mano: Carta[], cantidadIguales: number = 2) {
-    super();
-    let index: number = 0;
-    let iguales: number = 1;
-    let termine: boolean = false;
-
-    while (iguales < cantidadIguales && !termine) {
-      const actual = mano[index].valor;
-      const siguiente = mano[index + 1].valor;
-
-      if (actual - siguiente === 0) {
-        iguales++;
-      }
-
-      index++;
-      termine = index > mano.length - 2;
-    }
-    if (iguales === cantidadIguales) {
-      this.cartas = mano.splice(index - 1, cantidadIguales);
-      return;
-    }
+  public constructor(mano: Carta[]) {
+    super(mano, 1)
   }
 }
+

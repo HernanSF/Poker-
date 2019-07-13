@@ -1,5 +1,8 @@
-import { Combinacion } from "./combinacion";
-
-export class Pierna extends Combinacion {
+import { Carta } from "./Carta";
+import { CombinacionIguales } from "./CombinacionIguales";
+export class Pierna extends CombinacionIguales {
   protected valorBase: number;
+  public constructor(mano: Carta[]) {
+    super(mano, 2)
+  }
 }
