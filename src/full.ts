@@ -13,6 +13,6 @@ export class Full extends Combinacion {
     super();
     let primero = new Pierna(mano);
     let segundo = new Par(mano);
-    mano = primero.cartas.concat(segundo.cartas);
+    this.cartas = primero.cartas.concat(segundo.cartas);
   }
 }
