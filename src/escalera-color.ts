@@ -6,7 +6,9 @@ export class EscaleraColor extends Escalera {
 
   public constructor(mano: Carta[]) {
     super(mano);
-    if (this.cartas.find((carta) => (carta.palo !== this.cartas[0].palo) !== undefined)) {
+    let paloReferencia = this.cartas[0].palo;
+    let paloCarta = this.cartas.find((carta) => carta.palo !== paloReferencia);
+    if (paloCarta !== undefined) {
       this.cartas = [];
     }
   }

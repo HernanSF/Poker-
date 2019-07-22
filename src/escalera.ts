@@ -21,10 +21,10 @@ export class Escalera extends Combinacion {
       }
 
       index++;
-      termine = index > mano.length - 2;
+      termine = index > mano.length - 2 || consecutivos === cantidadConsecutivos - 1;
     }
 
-    if (consecutivos >= cantidadConsecutivos - 1) {
+    if (consecutivos === cantidadConsecutivos - 1) {
       this.cartas = mano.splice(index - consecutivos, cantidadConsecutivos);
       return;
     }
