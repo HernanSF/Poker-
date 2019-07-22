@@ -1,10 +1,9 @@
 import { expect } from "chai";
 import { Carta } from "../carta";
-import { DoblePar } from "../doble-par";
+import { DoblePar } from "../combinaciones-de-poker/doble-par";
 
 describe("doble-par", () => {
-  //un full son tres cartas del mismo valor y dos de otro valor
-  it("debería crear un doble-par", () => {
+  it("debería elegir un doble par", () => {
     let mazo = [
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
@@ -15,10 +14,10 @@ describe("doble-par", () => {
       new Carta(5, "Diamantes")
     ];
 
-    let doblePar = new DoblePar(mazo);
+    let actual = new DoblePar(mazo);
 
-    expect(doblePar.cartas.length).equal(4);
-    expect(doblePar.cartas[0].valor).equal(7);
+    expect(actual.cartas.length).equal(4);
+    expect(actual.cartas[0].valor).equal(7);
     expect(mazo.length).equal(3);
   });
 });

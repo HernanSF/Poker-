@@ -1,5 +1,5 @@
-import { Carta } from "src/Carta";
-import { Combinacion } from "./combinacion";
+import { Carta } from "../carta";
+import { Combinacion } from "../combinacion";
 
 export class CartaMasAlta extends Combinacion {
   protected valorBase: number = 0;

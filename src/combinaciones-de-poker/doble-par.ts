@@ -1,6 +1,6 @@
-import { Combinacion } from "./combinacion";
-import { Carta } from "./carta";
-import { Par } from "./par";
+import { Combinacion } from "../combinacion";
+import { Carta } from "../carta";
+import { Par } from "../combinaciones-de-poker/par";
 
 export class DoblePar extends Combinacion {
   protected valorBase: number = 50;

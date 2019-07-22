@@ -1,10 +1,10 @@
 import { expect } from "chai";
 import { Carta } from "../Carta";
-import { Escalera } from "../escalera";
+import { Escalera } from "../combinaciones-de-poker/escalera";
 import { Reglas } from "../reglas";
 
 describe("Escalera", () => {
-  it("debería funcionar", () => {
+  it("debería elegir una escalera", () => {
 
     let mazo = [
       new Carta(9, "Diamantes"),

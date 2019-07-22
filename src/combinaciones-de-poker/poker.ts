@@ -1,5 +1,5 @@
-import { Carta } from "./Carta";
-import { CombinacionIguales } from "./combinacion-iguales";
+import { Carta } from "../carta";
+import { CombinacionIguales } from "../combinacion-iguales";
 
 export class Poker extends CombinacionIguales {
   protected valorBase: number;

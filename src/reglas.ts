@@ -1,8 +1,8 @@
-import { CartaMasAlta } from "src/carta-mas-alta";
-import { Par } from "src/par";
+import { CartaMasAlta } from "src/combinaciones-de-poker/carta-mas-alta";
+import { Par } from "src/combinaciones-de-poker/par";
 import { Carta } from "./Carta";
 import { Combinacion } from "./combinacion";
-import { Escalera } from "./escalera";
+import { Escalera } from "./combinaciones-de-poker/escalera";
 
 export class Reglas {
   public verResultados(mano: Carta[]): Combinacion {

@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Pierna } from "../pierna";
+import { Pierna } from "../combinaciones-de-poker/pierna";
 import { Carta } from "../Carta";
 
 describe("Pierna", () => {

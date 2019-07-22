@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { Par } from "../par";
+import { Par } from "../combinaciones-de-poker/par";
 import { Carta } from "../carta";
 
 describe("Par", () => {
-  it("debería crear un par", () => {
+  it("debería elegir un par", () => {
     let mazo = [
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),

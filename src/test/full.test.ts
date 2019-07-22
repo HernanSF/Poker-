@@ -1,10 +1,10 @@
 import { expect } from "chai";
-import { Full } from "../full";
+import { Full } from "../combinaciones-de-poker/full";
 import { Carta } from "../Carta";
 
 describe("Full", () => {
   //un full son tres cartas del mismo valor y dos de otro valor
-  it("debería crear un full", () => {
+  it("debería elegir un full", () => {
     let mazo = [
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
