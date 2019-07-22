@@ -1,5 +1,6 @@
 import { Combinacion } from "./combinacion";
 import { Carta } from "./Carta";
+
 export class CombinacionIguales extends Combinacion {
   protected valorBase: number;
   public constructor(mano: Carta[], distancia: number) {

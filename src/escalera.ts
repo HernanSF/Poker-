@@ -1,4 +1,4 @@
-import { Carta } from "./Carta";
+import { Carta } from "./carta";
 import { Combinacion } from "./combinacion";
 
 export class Escalera extends Combinacion {

@@ -1,4 +1,4 @@
-import { Carta } from "./Carta";
+import { Carta } from "./carta";
 
 export abstract class Combinacion {
   public get valor(): number {

@@ -1,8 +1,8 @@
 import { expect } from "chai";
-import { Carta } from "../Carta";
-import { DoblePar } from "src/doble-par";
+import { Carta } from "../carta";
+import { DoblePar } from "../doble-par";
 
-describe.only("doble-par", () => {
+describe("doble-par", () => {
   //un full son tres cartas del mismo valor y dos de otro valor
   it("debería crear un doble-par", () => {
     let mazo = [

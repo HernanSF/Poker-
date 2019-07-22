@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Par } from "../par";
-import { Carta } from "../Carta";
+import { Carta } from "../carta";
 
 describe("Par", () => {
   it("debería crear un par", () => {

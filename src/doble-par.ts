@@ -1,5 +1,5 @@
 import { Combinacion } from "./combinacion";
-import { Carta } from "./Carta";
+import { Carta } from "./carta";
 import { Par } from "./par";
 
 export class DoblePar extends Combinacion {
