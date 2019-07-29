@@ -2,7 +2,8 @@ import { Carta } from "../carta";
 import { Combinacion } from "../combinacion";
 
 export class Escalera extends Combinacion {
-  protected valorBase: number = 100;
+  public puntajeBase: number = 4;
+  public puntajeIgualado: number;
 
   public constructor(mano: Carta[], cantidadConsecutivos: number = 5) {
     super();
@@ -26,6 +27,7 @@ export class Escalera extends Combinacion {
 
     if (consecutivos === cantidadConsecutivos - 1) {
       this.cartas = mano.splice(index - consecutivos, cantidadConsecutivos);
+      this.puntajeIgualado = this.cartas[0].valor
       return;
     }
   }

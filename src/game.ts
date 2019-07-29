@@ -44,7 +44,6 @@ export class Juego {
     for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
       for (let indiceValor = 0; indiceValor < valores.length; indiceValor++) {
         const carta = new Carta(valores[indiceValor].valor, palos[indicePalo]);
-        carta.nombre = valores[indiceValor].nombre + " de " + palos[indicePalo];
         this.mazo.push(carta);
       }
     }

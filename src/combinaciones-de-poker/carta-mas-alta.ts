@@ -2,21 +2,16 @@ import { Carta } from "../carta";
 import { Combinacion } from "../combinacion";
 
 export class CartaMasAlta extends Combinacion {
-  protected valorBase: number = 0;
-
-  public get valor(): number {
-    let valor = 0;
-    let base = 100000;
-    this.cartas.forEach((carta, index) => {
-      valor = valor + carta.valor * base;
-      base = base / 10;
-    });
-
-    return valor;
-  }
+  public puntajeBase: number = 0;
+  public puntajeCartaMasAlta: number;
 
   public constructor(mano: Carta[], cantidad: number) {
     super();
-    this.cartas = mano.splice(0, cantidad);
+    this.cartas = this.cartas.concat(mano.splice(0, cantidad));
+    let index: number = 0;
+    while (index < cantidad) {
+      this.puntajeCartaMasAlta = this.puntajeCartaMasAlta + mano[index].valor;
+      index++;
+    }
   }
 }

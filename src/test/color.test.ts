@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { Carta } from "../carta";
 import { Color } from "../combinaciones-de-poker/color";
 
-describe.only("color", () => {
+describe("color", () => {
   //color son cinco cartas del mismo palo, si hay mas, se eligen las de mayor valor
   it("debería  elegir una mano de color", () => {
     let mazo = [

@@ -3,12 +3,14 @@ import { Carta } from "../carta";
 import { Par } from "../combinaciones-de-poker/par";
 
 export class DoblePar extends Combinacion {
-  protected valorBase: number = 50;
+  public puntajeBase: number = 2;
+  public puntajeIgualado: number;
 
   constructor(mano: Carta[]) {
     super();
     let primero = new Par(mano);
     let segundo = new Par(mano);
     this.cartas = primero.cartas.concat(segundo.cartas);
+    this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[2].valor;
   }
 }

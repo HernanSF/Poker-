@@ -2,7 +2,7 @@ import { Carta } from "../carta";
 import { Escalera } from "./escalera";
 
 export class EscaleraColor extends Escalera {
-  protected valorBase: number = 200;
+  public puntajeBase: number = 8;
 
   public constructor(mano: Carta[]) {
     super(mano);
@@ -10,6 +10,8 @@ export class EscaleraColor extends Escalera {
     let paloCarta = this.cartas.find((carta) => carta.palo !== paloReferencia);
     if (paloCarta !== undefined) {
       this.cartas = [];
+    } else {
+      this.puntajeIgualado = this.cartas[0].valor
     }
   }
 }
