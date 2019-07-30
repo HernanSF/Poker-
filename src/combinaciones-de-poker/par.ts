@@ -7,6 +7,8 @@ export class Par extends CombinacionIguales {
 
   public constructor(mano: Carta[]) {
     super(mano, 1);
-    this.puntajeIgualado = this.cartas[0].valor
+    if (this.cartas.length != 0) {
+      this.puntajeIgualado = this.cartas[0].valor;
+    }
   }
 }

@@ -1,72 +1,18 @@
-import { Carta } from "./Carta";
+import { Carta } from "./carta";
 import { Jugador } from "./jugador";
-
-// we are creating a game of texas hold'em
+import { Mazo } from "./mazo";
 
 export class Juego {
-  public mazo: Carta[];
+  public mazo: Mazo
   public pozo: number;
   public jugadores: Jugador[];
   public turno: number;
-  public mezclado: boolean;
   public manoCroupier: Carta[];
 
-  constructor() {
-    this.mazo = [];
+  constructor(cantidad: number) {
+    this.mazo = new Mazo
     this.pozo = 0;
     this.jugadores = [];
-    this.turno = 0;
-    this.mezclado = false;
-    this.manoCroupier = [];
-  }
-
-  // we should create a deck of cards with this
-  // texas hold'em use a spanish deck
-
-  public crearMazo(): Carta[] {
-    const palos = ["corazones", "diamantes", "picas", "treboles"];
-    const valores = [
-      { nombre: "As", valor: 14 },
-      { nombre: "Rey", valor: 13 },
-      { nombre: "Reina", valor: 12 },
-      { nombre: "Jota", valor: 11 },
-      { nombre: "Diez", valor: 10 },
-      { nombre: "Nueve", valor: 9 },
-      { nombre: "Ocho", valor: 8 },
-      { nombre: "Siete", valor: 7 },
-      { nombre: "Seis", valor: 6 },
-      { nombre: "Cinco", valor: 5 },
-      { nombre: "Cuatro", valor: 4 },
-      { nombre: "Tres", valor: 3 },
-      { nombre: "Dos", valor: 2 }
-    ];
-
-    for (let indicePalo = 0; indicePalo < palos.length; indicePalo++) {
-      for (let indiceValor = 0; indiceValor < valores.length; indiceValor++) {
-        const carta = new Carta(valores[indiceValor].valor, palos[indicePalo]);
-        this.mazo.push(carta);
-      }
-    }
-    return this.mazo;
-  }
-
-  // now we shuffle the deck
-  // this should start the cicle of a round in texas hold'em
-
-  public mezclarMazo(): Carta[] {
-    for (let indice = 0; indice < this.mazo.length; indice++) {
-      const indiceCartaCambiada = Math.round(Math.random() * this.mazo.length);
-      const cartaCambiada = this.mazo[indiceCartaCambiada];
-      this.mazo[indiceCartaCambiada] = this.mazo[indice];
-      this.mazo[indice] = cartaCambiada;
-    }
-    this.mezclado = true;
-    return this.mazo;
-  }
-
-  // Assign quantity of players (this game should support up to 4 players top)
-
-  public crearJugadores(cantidad: number): Jugador[] {
     for (let i = 0; i < cantidad; i++) {
       const player = new Jugador();
       player.id = i;
@@ -75,7 +21,8 @@ export class Juego {
         return;
       }
     }
-    return this.jugadores;
+    this.turno = 0;
+    this.manoCroupier = [];
   }
 
   // texas hold'em has various stages, we'll call them "draw stages", and "betting stages"
@@ -84,13 +31,13 @@ export class Juego {
   // draw stage
 
   public repartirCartasJugadores(): Jugador[] {
-    if (this.mazo.length === 0) {
+    if (this.mazo.cartas.length === 0) {
       throw new Error("No se pueden repartir cartas a los jugadores. Falta crear el mazo primero.");
     }
 
     for (const jugador of this.jugadores) {
-      const carta1 = this.mazo.shift();
-      const carta2 = this.mazo.shift();
+      const carta1 = this.mazo.cartas.shift();
+      const carta2 = this.mazo.cartas.shift();
 
       jugador.manoTotal.push(carta1);
       jugador.manoTotal.push(carta2);
@@ -108,7 +55,7 @@ export class Juego {
 
   public flop(): Carta[] {
     if (this.manoCroupier.length === 0) {
-      this.manoCroupier = this.manoCroupier.concat(this.mazo.slice(0, 3));
+      this.manoCroupier = this.mazo.cartas.slice(0, 3);
     }
     return this.manoCroupier;
   }
@@ -118,7 +65,7 @@ export class Juego {
 
   public river() {
     if (this.manoCroupier.length === 3) {
-      this.manoCroupier = this.manoCroupier.concat(this.mazo.shift());
+      this.manoCroupier = this.manoCroupier.concat(this.mazo.cartas.shift());
     } else {
       throw new Error();
     }
@@ -129,7 +76,7 @@ export class Juego {
 
   public turn() {
     if (this.manoCroupier.length === 4) {
-      this.manoCroupier = this.manoCroupier.concat(this.mazo.shift());
+      this.manoCroupier = this.manoCroupier.concat(this.mazo.cartas.shift());
       for (let indexJugador = 0; indexJugador < this.jugadores.length; indexJugador++) {
         this.jugadores[indexJugador].manoTotal = this.manoCroupier.concat(this.jugadores[indexJugador].manoTotal);
       }

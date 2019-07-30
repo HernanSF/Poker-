@@ -3,7 +3,7 @@ import { Carta } from "../Carta";
 import { Escalera } from "../combinaciones-de-poker/escalera";
 import { Reglas } from "../reglas";
 
-describe.only("Escalera", () => {
+describe("Escalera", () => {
   it("debería elegir una escalera", () => {
 
     let mazo = [
