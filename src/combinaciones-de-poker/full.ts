@@ -10,7 +10,10 @@ export class Full extends Combinacion {
     super();
     let primero = new Pierna(mano);
     let segundo = new Par(mano);
+
     this.cartas = primero.cartas.concat(segundo.cartas);
-    this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[3].valor;
+    if (this.cartas.length === 5) {
+      this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[3].valor;
+    }
   }
 }

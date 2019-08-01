@@ -6,6 +6,9 @@ export class Poker extends CombinacionIguales {
 
   public constructor(mano: Carta[]) {
     super(mano, 3);
-    this.puntajeIgualado = this.cartas[0].valor;
+    if (this.cartas.length === 4) {
+      this.cartas = this.cartas.concat(mano.splice(0, 1));
+      this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[4].valor;
+    }
   }
 }

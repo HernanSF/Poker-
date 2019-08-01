@@ -3,17 +3,21 @@ import { Jugador } from "./jugador";
 import { Mazo } from "./mazo";
 
 export class Juego {
-  public mazo: Mazo
+  public mazo: Mazo;
   public pozo: number;
   public jugadores: Jugador[];
   public turno: number;
   public manoCroupier: Carta[];
 
-  constructor(cantidad: number) {
-    this.mazo = new Mazo
+  constructor() {
+    this.mazo = new Mazo();
     this.pozo = 0;
     this.jugadores = [];
-    for (let i = 0; i < cantidad; i++) {
+    this.turno = 0;
+    this.manoCroupier = [];
+  }
+  crearJugadores(cantidadJugadores: number) {
+    for (let i = 0; i < cantidadJugadores; i++) {
       const player = new Jugador();
       player.id = i;
       this.jugadores.push(player);
@@ -21,10 +25,7 @@ export class Juego {
         return;
       }
     }
-    this.turno = 0;
-    this.manoCroupier = [];
   }
-
   // texas hold'em has various stages, we'll call them "draw stages", and "betting stages"
   // after a "draw stage" there always is a betting stage
   // first stage is dealing two cards to each player in the board
@@ -48,6 +49,12 @@ export class Juego {
   // you bet that you have or will have the best hand comparing with the other players
   // there will be a betting function here
 
+  public rondaApuestas() {
+    function apostar(name: string, amount: number) {}
+    for (const jugador of this.jugadores) {
+      let apuesta = jugador.apuesta(name, 0);
+    }
+  }
   // second draw stage
   // this set of cards can be used by all the players in the board
   // the flop
@@ -102,9 +109,5 @@ export class Juego {
   // let apuestasActuales = apuestas
   //  apuestas.forEach(element =>
   //   this.pozo = this.pozo + element)
-  // }
-
-  // public rondaApuestas() {
-  //   for (let i = 0; i < this.cantidadJugadores.length; i++) {}
   // }
 }

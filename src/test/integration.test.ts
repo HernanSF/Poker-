@@ -2,8 +2,9 @@ import { expect } from "chai";
 import { Juego } from "../juego";
 describe("Juego", () => {
   it("debería funcionar", () => {
-    const prueba = new Juego(3);
+    const prueba = new Juego();
 
+    prueba.crearJugadores(3)
     expect(prueba.jugadores.length).equal(3, "deberia crear tres jugadores");
     prueba.repartirCartasJugadores();
     expect(prueba.jugadores[0].manoTotal.length).equal(2, "deberia tener dos cartas");

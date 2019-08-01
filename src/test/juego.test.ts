@@ -6,9 +6,10 @@ describe("Juego", () => {
   describe("crearMazo", () => {
     it("deberia crear un mazo", () => {
       // Arrange
-      const game = new Juego(1);
+      const game = new Juego();
 
       // Act
+      game.crearJugadores(1)
       const actual = game.mazo.cartas;
 
       // Assert
@@ -18,7 +19,7 @@ describe("Juego", () => {
     describe("mezclarMazo", () => {
       it("deberia mezclar mazo", () => {
         // Arrange
-        const game = new Juego(1);
+        const game = new Juego();
 
         // Act & Assert
       });
@@ -27,11 +28,12 @@ describe("Juego", () => {
     describe("repartirCartas", () => {
       it("deberia repartir cartas a los jugadores", () => {
         // Arrange
-        const game = new Juego(1);
+        const game = new Juego();
         const cartasRestantesEsperadas = 50;
         const cartasEnManoEsperadas = 2;
 
         // Act & Assert
+        game.crearJugadores(1)
         game.repartirCartasJugadores();
 
         expect(game.jugadores[0].manoTotal.length).equal(cartasEnManoEsperadas, "Cartas en mano no son las esperadas");
@@ -52,9 +54,10 @@ describe("Juego", () => {
   describe("flop", () => {
     it("deberia repartir tres cartas a mano de croupier", () => {
       // Arrange
-      const game = new Juego(1);
+      const game = new Juego();
 
       // Act & Assert
+      game.crearJugadores(1)
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -64,9 +67,10 @@ describe("Juego", () => {
   describe("river", () => {
     it("deberia repartir cuatro cartas a mano de croupier", () => {
       // Arrange
-      const game = new Juego(1);
+      const game = new Juego();
 
       // Act & Assert
+      game.crearJugadores(1)
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -78,9 +82,10 @@ describe("Juego", () => {
   describe("turn", () => {
     it("deberia repartir cinco cartas a mano de croupier", () => {
       // Arrange
-      const game = new Juego(1);
+      const game = new Juego();
 
       // Act & Assert
+      game.crearJugadores(1)
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -92,9 +97,10 @@ describe("Juego", () => {
   describe("mano de croupier al azar", () => {
     it("deberia repartir cinco cartas al azar a la mano de croupier", () => {
       // Arrange
-      const game = new Juego(1);
+      const game = new Juego();
 
       // Act & Assert
+      game.crearJugadores(1)
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -106,9 +112,10 @@ describe("Juego", () => {
   describe("orden de funciones flop, turn y river", () => {
     it("deberia impedir que funcione si no es en orden", () => {
       // Arrange
-      const game = new Juego(1);
+      const game = new Juego();
 
       // Act & Assert
+      game.crearJugadores(1)
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       expect(game.river.bind(game)).to.throw();

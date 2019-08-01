@@ -5,7 +5,6 @@ import { Reglas } from "../reglas";
 
 describe("Escalera", () => {
   it("debería elegir una escalera", () => {
-
     let mazo = [
       new Carta(9, "Diamantes"),
       new Carta(8, "Diamantes"),
@@ -32,7 +31,7 @@ describe("Escalera", () => {
     ];
     actual = new Escalera(mazo);
 
-    expect(actual).to.exist;
+    expect(actual.cartas.length).equal(0);
 
     mazo = [
       new Carta(12, "Diamantes"),
@@ -44,6 +43,7 @@ describe("Escalera", () => {
       new Carta(1, "Diamantes")
     ];
     actual = new Escalera(mazo);
+    expect(actual.cartas.length).equal(0);
     expect(actual).to.exist;
 
     mazo = [
@@ -98,5 +98,38 @@ describe("Escalera", () => {
     expect(actual.cartas[2].valor).equal(3);
     expect(actual.cartas[3].valor).equal(2);
     expect(actual.cartas[4].valor).equal(1);
+
+    mazo = [
+      new Carta(10, "Diamantes"),
+      new Carta(9, "Diamantes"),
+      new Carta(9, "Diamantes"),
+      new Carta(8, "Diamantes"),
+      new Carta(7, "Diamantes"),
+      new Carta(6, "Diamantes"),
+      new Carta(1, "Diamantes")
+    ];
+
+    actual = new Escalera(mazo);
+
+    expect(actual.cartas.length).equal(5);
+    expect(actual.cartas[0].valor).equal(10);
+    expect(actual.cartas[1].valor).equal(9);
+    expect(actual.cartas[2].valor).equal(8);
+    expect(actual.cartas[3].valor).equal(7);
+    expect(actual.cartas[4].valor).equal(6);
+
+    mazo = [
+      new Carta(7, "Diamantes"),
+      new Carta(7, "Diamantes"),
+      new Carta(7, "Diamantes"),
+      new Carta(7, "Diamantes"),
+      new Carta(2, "Diamantes"),
+      new Carta(1, "Diamantes"),
+      new Carta(9, "Diamantes")
+    ];
+
+    actual = new Escalera(mazo);
+
+    expect(actual.cartas.length).equal(0);
   });
 });

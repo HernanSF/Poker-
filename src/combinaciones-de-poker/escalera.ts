@@ -17,6 +17,9 @@ export class Escalera extends Combinacion {
 
       if (actual - siguiente === 1) {
         consecutivos++;
+      } else if (actual - siguiente === 0) {
+        mano.splice(index + 1, 1);
+        index--
       } else {
         consecutivos = 0;
       }
@@ -27,7 +30,7 @@ export class Escalera extends Combinacion {
 
     if (consecutivos === cantidadConsecutivos - 1) {
       this.cartas = mano.splice(index - consecutivos, cantidadConsecutivos);
-      this.puntajeIgualado = this.cartas[0].valor
+      this.puntajeIgualado = this.cartas[0].valor;
       return;
     }
   }

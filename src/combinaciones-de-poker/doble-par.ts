@@ -11,6 +11,8 @@ export class DoblePar extends Combinacion {
     let primero = new Par(mano);
     let segundo = new Par(mano);
     this.cartas = primero.cartas.concat(segundo.cartas);
-    this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[2].valor;
+    if (this.cartas.length === 4) {
+      this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[2].valor;
+    }
   }
 }
