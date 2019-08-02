@@ -87,13 +87,12 @@ export class Juego {
       jugador.puntaje.push(reglas.verResultados(jugador.manoTotal).puntajeIgualado);
       if (jugador.manoFinal.length !== 5) {
         jugador.manoFinal = jugador.manoFinal.concat(diferencia.slice(0, 5 - jugador.manoFinal.length));
-        let cartasExtra = diferencia.slice(0, 5 - jugador.manoFinal.length);
-        let total = 0;
-        for (let i in cartasExtra) {
-          total += cartasExtra[i].valor;
-        }
-        jugador.puntaje.push(total);
+        let longitud = diferencia.slice(0, 5 - jugador.manoFinal.length).length;
+        let suma = 0;
+        while (--longitud || longitud !== 0) {
+          suma += diferencia.slice(0, 5 - jugador.manoFinal.length)[longitud].valor;
       }
+      jugador.puntaje.push(suma)
     }
   }
   //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
