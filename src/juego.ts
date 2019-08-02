@@ -91,15 +91,16 @@ export class Juego {
         let suma = 0;
         while (--longitud || longitud !== 0) {
           suma += diferencia.slice(0, 5 - jugador.manoFinal.length)[longitud].valor;
+        }
+        jugador.puntaje.push(suma);
       }
-      jugador.puntaje.push(suma)
     }
+    //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
+    //filtrar los que tengan el mismo puntaje que el primero
+    //si quedaron dos o mas jugadores repetir proceso pero ordenando por puntaje igualado
+    //filtrar los que tengan el mismo puntaje que el primero
+    //repetir proceso con puntaje de carta mas alta
+    //filtrar por ultima vez
+    //jugadores que quedan son ganadores
   }
-  //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
-  //filtrar los que tengan el mismo puntaje que el primero
-  //si quedaron dos o mas jugadores repetir proceso pero ordenando por puntaje igualado
-  //filtrar los que tengan el mismo puntaje que el primero
-  //repetir proceso con puntaje de carta mas alta
-  //filtrar por ultima vez
-  //jugadores que quedan son ganadores
 }
