@@ -1,5 +1,5 @@
-import { Carta } from "../carta";
-import { CombinacionIguales } from "../combinacion-iguales";
+import { Carta } from "../elementos-principales/carta";
+import { CombinacionIguales } from "../elementos-principales/combinacion-iguales";
 
 export class Par extends CombinacionIguales {
   public puntajeBase: number = 1;
@@ -7,7 +7,7 @@ export class Par extends CombinacionIguales {
 
   public constructor(mano: Carta[]) {
     super(mano, 1);
-    if (this.cartas.length != 0) {
+    if (this.cartas.length === 2) {
       this.puntajeIgualado = this.cartas[0].valor;
     }
   }

@@ -1,7 +1,7 @@
 import { expect } from "chai";
-import { Carta } from "../Carta";
+import { Carta } from "../elementos-principales/carta";
 import { Escalera } from "../combinaciones-de-poker/escalera";
-import { Reglas } from "../reglas";
+import { Reglas } from "../elementos-principales/reglas";
 
 describe("Escalera", () => {
   it("debería elegir una escalera", () => {

@@ -1,5 +1,5 @@
-import { Combinacion } from "../combinacion";
-import { Carta } from "../Carta";
+import { Combinacion } from "../elementos-principales/combinacion";
+import { Carta } from "../elementos-principales/carta";
 import { Pierna } from "./pierna";
 import { Par } from "../combinaciones-de-poker/par";
 

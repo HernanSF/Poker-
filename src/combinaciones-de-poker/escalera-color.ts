@@ -1,4 +1,4 @@
-import { Carta } from "../carta";
+import { Carta } from "../elementos-principales/carta";
 import { Escalera } from "./escalera";
 
 export class EscaleraColor extends Escalera {

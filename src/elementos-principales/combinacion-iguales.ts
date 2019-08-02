@@ -1,5 +1,5 @@
 import { Combinacion } from "./combinacion";
-import { Carta } from "./Carta";
+import { Carta } from "./carta";
 
 export class CombinacionIguales extends Combinacion {
   public puntajeBase: number;

@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Pierna } from "../combinaciones-de-poker/pierna";
-import { Carta } from "../Carta";
+import { Carta } from "../elementos-principales/carta";
 
 describe("Pierna", () => {
   it("debería crear una pierna", () => {
@@ -8,10 +8,10 @@ describe("Pierna", () => {
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
+      new Carta(9, "Diamantes"),
       new Carta(5, "Diamantes"),
       new Carta(2, "Diamantes"),
-      new Carta(1, "Diamantes"),
-      new Carta(9, "Diamantes")
+      new Carta(1, "Diamantes")
     ];
 
     let pierna = new Pierna(mazo);

@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Poker } from "../combinaciones-de-poker/poker";
-import { Carta } from "../Carta";
+import { Carta } from "../elementos-principales/carta";
 
 describe("Poker", () => {
   it("debería elegir un poker", () => {
@@ -16,9 +16,8 @@ describe("Poker", () => {
 
     let actual = new Poker(mazo);
 
-    expect(actual.cartas.length).equal(5);
+    expect(actual.cartas.length).equal(4);
     expect(actual.cartas[0].valor).equal(7);
-    expect(actual.cartas[4].valor).equal(9);
-    expect(mazo.length).equal(2);
+    expect(mazo.length).equal(3);
   });
 });

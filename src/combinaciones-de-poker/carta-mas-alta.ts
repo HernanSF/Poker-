@@ -1,9 +1,9 @@
-import { Carta } from "../carta";
-import { Combinacion } from "../combinacion";
+import { Carta } from "../elementos-principales/carta";
+import { Combinacion } from "../elementos-principales/combinacion";
 
 export class CartaMasAlta extends Combinacion {
   public puntajeBase: number = 0;
-  public puntajeCartaMasAlta: number = 0;
+  public puntajeIgualado: number = 0;
 
   public constructor(mano: Carta[], cantidad: number) {
     super();
@@ -11,7 +11,7 @@ export class CartaMasAlta extends Combinacion {
     if (this.cartas.length === cantidad) {
       let index: number = 0;
       while (index < cantidad) {
-        this.puntajeCartaMasAlta = this.puntajeCartaMasAlta + this.cartas[index].valor;
+        this.puntajeIgualado = this.puntajeIgualado + this.cartas[index].valor;
         index++;
       }
     }

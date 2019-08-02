@@ -1,5 +1,5 @@
-import { Combinacion } from "../combinacion";
-import { Carta } from "../carta";
+import { Combinacion } from "../elementos-principales/combinacion";
+import { Carta } from "../elementos-principales/carta";
 import { Par } from "../combinaciones-de-poker/par";
 
 export class DoblePar extends Combinacion {
@@ -12,7 +12,7 @@ export class DoblePar extends Combinacion {
     let segundo = new Par(mano);
     this.cartas = primero.cartas.concat(segundo.cartas);
     if (this.cartas.length === 4) {
-      this.puntajeIgualado = this.cartas[0].valor * 100 + this.cartas[2].valor;
+      this.puntajeIgualado = this.cartas[0].valor * 1000 + this.cartas[2].valor * 100;
     }
   }
 }

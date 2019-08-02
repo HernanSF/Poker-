@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { Carta } from "../carta";
-import { Reglas } from "../reglas";
+import { Carta } from "../elementos-principales/carta";
+import { Reglas } from "../elementos-principales/reglas";
 
 describe("Reglas", () => {
   it("debería elegir la mejor mano", () => {
@@ -16,14 +16,13 @@ describe("Reglas", () => {
 
     let reglas = new Reglas();
 
-    expect(reglas.verResultados(mazo).cartas.length).equal(5);
+    expect(reglas.verResultados(mazo).cartas.length).equal(4);
     expect(reglas.verResultados(mazo).cartas[0].valor).equal(7);
     expect(reglas.verResultados(mazo).cartas[1].valor).equal(7);
     expect(reglas.verResultados(mazo).cartas[2].valor).equal(7);
     expect(reglas.verResultados(mazo).cartas[3].valor).equal(7);
-    expect(reglas.verResultados(mazo).cartas[4].valor).equal(9);
     expect(reglas.verResultados(mazo).puntajeBase).equal(7);
-    expect(reglas.verResultados(mazo).puntajeIgualado).equal(709);
+    expect(reglas.verResultados(mazo).puntajeIgualado).equal(7);
     expect(mazo.length).equal(7);
 
     mazo = [

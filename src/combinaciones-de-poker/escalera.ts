@@ -1,5 +1,5 @@
-import { Carta } from "../carta";
-import { Combinacion } from "../combinacion";
+import { Carta } from "../elementos-principales/carta";
+import { Combinacion } from "../elementos-principales/combinacion";
 
 export class Escalera extends Combinacion {
   public puntajeBase: number = 4;

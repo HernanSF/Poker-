@@ -1,5 +1,5 @@
-import { Carta } from "../carta";
-import { CombinacionIguales } from "../combinacion-iguales";
+import { Carta } from "../elementos-principales/carta";
+import { CombinacionIguales } from "../elementos-principales/combinacion-iguales";
 import { CartaMasAlta } from "./carta-mas-alta";
 
 export class Pierna extends CombinacionIguales {
@@ -9,7 +9,7 @@ export class Pierna extends CombinacionIguales {
   public constructor(mano: Carta[]) {
     super(mano, 2);
     if (this.cartas.length === 3) {
-      this.puntajeIgualado = this.cartas[0].valor;
-    } 
+      this.puntajeIgualado = this.cartas[0].valor * 10000000;
+    }
   }
 }

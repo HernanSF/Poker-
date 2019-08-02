@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Carta } from "../carta";
+import { Carta } from "../elementos-principales/carta";
 import { DoblePar } from "../combinaciones-de-poker/doble-par";
 
 describe("doble-par", () => {

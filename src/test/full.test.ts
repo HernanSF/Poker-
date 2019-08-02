@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Full } from "../combinaciones-de-poker/full";
-import { Carta } from "../Carta";
+import { Carta } from "../elementos-principales/carta";
 
 describe("Full", () => {
   //un full son tres cartas del mismo valor y dos de otro valor

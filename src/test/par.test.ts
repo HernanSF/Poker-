@@ -1,17 +1,17 @@
 import { expect } from "chai";
 import { Par } from "../combinaciones-de-poker/par";
-import { Carta } from "../carta";
+import { Carta } from "../elementos-principales/carta";
 
 describe("Par", () => {
   it("debería elegir un par", () => {
     let mazo = [
+      new Carta(9, "Diamantes"),
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
-      new Carta(3, "Diamantes"),
       new Carta(5, "Diamantes"),
+      new Carta(3, "Diamantes"),
       new Carta(2, "Diamantes"),
-      new Carta(1, "Diamantes"),
-      new Carta(9, "Diamantes")
+      new Carta(1, "Diamantes")
     ];
 
     let par = new Par(mazo);
@@ -22,13 +22,13 @@ describe("Par", () => {
   });
   it("debería ignorar doble par", () => {
     let mazo = [
+      new Carta(9, "Diamantes"),
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
       new Carta(3, "Diamantes"),
       new Carta(3, "Diamantes"),
       new Carta(2, "Diamantes"),
-      new Carta(1, "Diamantes"),
-      new Carta(9, "Diamantes")
+      new Carta(1, "Diamantes")
     ];
 
     let par = new Par(mazo);

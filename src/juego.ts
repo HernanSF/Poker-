@@ -1,6 +1,7 @@
-import { Carta } from "./carta";
-import { Jugador } from "./jugador";
-import { Mazo } from "./mazo";
+import { Carta } from "./elementos-principales/carta";
+import { Jugador } from "./elementos-principales/jugador";
+import { Mazo } from "./elementos-principales/mazo";
+import { Reglas } from "./elementos-principales/reglas";
 
 export class Juego {
   public mazo: Mazo;
@@ -26,10 +27,8 @@ export class Juego {
       }
     }
   }
-  // texas hold'em has various stages, we'll call them "draw stages", and "betting stages"
-  // after a "draw stage" there always is a betting stage
-  // first stage is dealing two cards to each player in the board
-  // draw stage
+
+  // deal 2 cards to players
 
   public repartirCartasJugadores(): Jugador[] {
     if (this.mazo.cartas.length === 0) {
@@ -46,29 +45,18 @@ export class Juego {
     return this.jugadores;
   }
 
-  // you bet that you have or will have the best hand comparing with the other players
   // there will be a betting function here
 
-  public rondaApuestas() {
-    function apostar(name: string, amount: number) {}
-    for (const jugador of this.jugadores) {
-      let apuesta = jugador.apuesta(name, 0);
-    }
-  }
-  // second draw stage
-  // this set of cards can be used by all the players in the board
-  // the flop
   // draw stage
 
   public flop(): Carta[] {
     if (this.manoCroupier.length === 0) {
-      this.manoCroupier = this.mazo.cartas.slice(0, 3);
+      this.manoCroupier = this.mazo.cartas.splice(0, 3);
     }
     return this.manoCroupier;
   }
 
-  // same function as above but you draw just one "public" card
-  // draw stage
+  // second draw stage
 
   public river() {
     if (this.manoCroupier.length === 3) {
@@ -78,8 +66,7 @@ export class Juego {
     }
   }
 
-  // draw stage
-  // after the last round of bets should end the cicle of one play
+  // third draw stage
 
   public turn() {
     if (this.manoCroupier.length === 4) {
@@ -90,24 +77,19 @@ export class Juego {
     }
   }
 
-  // ending of round, this should choose a winner who gets all the bets
-  // if there is a tie then the well gets divided among the players (the ones that have tied)
-  // after this, the cicle resets
-
-  // public elegirManoGanadora(mano: Array<Carta>): Array<Carta> {
-  //   mano.sort((a, b) => a.valor - b.valor);
-
-  // }
-
-  // here will be a function that checks if there are players with 0 "fichas"
-  // if that happens, that player gets eliminated from the game
-  // when there is only one player on the board, the game finishes, he or she wins
-
-  // ideas for betting functions
-
-  // public apostar(...apuestas: Array<number>) {
-  // let apuestasActuales = apuestas
-  //  apuestas.forEach(element =>
-  //   this.pozo = this.pozo + element)
-  // }
+  public encontrarGanador() {
+    for (const jugador of this.jugadores) {
+      let reglas = new Reglas();
+      jugador.manoFinal = reglas.verResultados(jugador.manoTotal).cartas;
+      jugador.puntaje.push(reglas.verResultados(jugador.manoTotal).puntajeBase);
+      jugador.puntaje.push(reglas.verResultados(jugador.manoTotal).puntajeIgualado);
+    }
+  }
+  //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
+  //filtrar los que tengan el mismo puntaje que el primero 
+  //si quedaron dos o mas jugadores repetir proceso pero ordenando por puntaje igualado
+  //filtrar los que tengan el mismo puntaje que el primero 
+  //repetir proceso con puntaje de carta mas alta
+  //filtrar por ultima vez 
+  //jugadores que quedan son ganadores 
 }
