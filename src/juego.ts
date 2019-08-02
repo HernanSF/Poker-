@@ -95,6 +95,7 @@ export class Juego {
         jugador.puntaje.push(suma);
       }
     }
+    
     //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
     //filtrar los que tengan el mismo puntaje que el primero
     //si quedaron dos o mas jugadores repetir proceso pero ordenando por puntaje igualado
