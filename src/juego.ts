@@ -81,15 +81,26 @@ export class Juego {
     for (const jugador of this.jugadores) {
       let reglas = new Reglas();
       jugador.manoFinal = reglas.verResultados(jugador.manoTotal).cartas;
+      let diferencia = jugador.manoTotal.filter((x) => !jugador.manoFinal.includes(x));
+      diferencia.sort((a, b) => b.valor - a.valor);
       jugador.puntaje.push(reglas.verResultados(jugador.manoTotal).puntajeBase);
       jugador.puntaje.push(reglas.verResultados(jugador.manoTotal).puntajeIgualado);
+      if (jugador.manoFinal.length !== 5) {
+        jugador.manoFinal = jugador.manoFinal.concat(diferencia.slice(0, 5 - jugador.manoFinal.length));
+        let cartasExtra = diferencia.slice(0, 5 - jugador.manoFinal.length);
+        let total = 0;
+        for (let i in cartasExtra) {
+          total += cartasExtra[i].valor;
+        }
+        jugador.puntaje.push(total);
+      }
     }
   }
   //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
-  //filtrar los que tengan el mismo puntaje que el primero 
+  //filtrar los que tengan el mismo puntaje que el primero
   //si quedaron dos o mas jugadores repetir proceso pero ordenando por puntaje igualado
-  //filtrar los que tengan el mismo puntaje que el primero 
+  //filtrar los que tengan el mismo puntaje que el primero
   //repetir proceso con puntaje de carta mas alta
-  //filtrar por ultima vez 
-  //jugadores que quedan son ganadores 
+  //filtrar por ultima vez
+  //jugadores que quedan son ganadores
 }
