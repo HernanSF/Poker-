@@ -2,7 +2,7 @@ import { Carta } from "../elementos-principales/carta";
 import { Combinacion } from "../elementos-principales/combinacion";
 
 export class Escalera extends Combinacion {
-  public puntajeBase: number = 4;
+  public ranking: number = 4;
   public puntajeIgualado: number;
 
   public constructor(mano: Carta[], cantidadConsecutivos: number = 5) {
@@ -16,12 +16,11 @@ export class Escalera extends Combinacion {
       const siguiente = mano[index + 1].valor;
 
       if (actual - siguiente === 1) {
+        this.cartas.push(mano[index]);
         consecutivos++;
-      } else if (actual - siguiente === 0) {
-        mano.splice(index + 1, 1);
-        index--
-      } else {
+      } else if (actual - siguiente !== 0) {
         consecutivos = 0;
+        this.cartas = [];
       }
 
       index++;
@@ -29,9 +28,12 @@ export class Escalera extends Combinacion {
     }
 
     if (consecutivos === cantidadConsecutivos - 1) {
-      this.cartas = mano.splice(index - consecutivos, cantidadConsecutivos);
+      this.cartas.push(mano[index]);
       this.puntajeIgualado = this.cartas[0].valor;
       return;
+    } else {
+      // No tengo los consecutivos necesarios para hacer una escalera
+      this.cartas = [];
     }
   }
 }

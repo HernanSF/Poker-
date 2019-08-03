@@ -1,12 +1,12 @@
 import { Carta } from "./carta";
 import { Combinacion } from "./combinacion";
 
+
 export class Jugador {
   public id: number;
   public fichas: number;
-  public manoTotal: Carta[] = [];
-  public manoFinal: Carta[] = [];
-  public puntaje: number[]
+  public mano: Carta[] = [];
+  public combinacion: Combinacion;
   public jugandoMano: boolean;
   public jugandoPartida: boolean;
   public ganoMano: boolean;
@@ -16,7 +16,6 @@ export class Jugador {
     this.fichas = 1000;
     this.jugandoMano = true;
     this.jugandoPartida = true;
-    this.puntaje = []
     this.ganoMano = false;
     this.ganoPartida = false;
   }

@@ -3,8 +3,8 @@ import { Carta } from "../elementos-principales/carta";
 import { Reglas } from "../elementos-principales/reglas";
 
 describe("Reglas", () => {
-  it("debería elegir la mejor mano", () => {
-    let mazo = [
+  it("debería elegir Poker", () => {
+    const mazo = [
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
       new Carta(7, "Diamantes"),
@@ -14,18 +14,20 @@ describe("Reglas", () => {
       new Carta(9, "Diamantes")
     ];
 
-    let reglas = new Reglas();
+    const reglas = new Reglas();
+    const actual = reglas.buscarMejorCombinacion(mazo);
 
-    expect(reglas.verResultados(mazo).cartas.length).equal(4);
-    expect(reglas.verResultados(mazo).cartas[0].valor).equal(7);
-    expect(reglas.verResultados(mazo).cartas[1].valor).equal(7);
-    expect(reglas.verResultados(mazo).cartas[2].valor).equal(7);
-    expect(reglas.verResultados(mazo).cartas[3].valor).equal(7);
-    expect(reglas.verResultados(mazo).puntajeBase).equal(7);
-    expect(reglas.verResultados(mazo).puntajeIgualado).equal(7);
+    expect(actual.cartas.length).equal(5);
+    expect(actual.cartas[0].valor).equal(7);
+    expect(actual.cartas[1].valor).equal(7);
+    expect(actual.cartas[2].valor).equal(7);
+    expect(actual.cartas[3].valor).equal(7);
+    expect(actual.ranking).equal(7);
     expect(mazo.length).equal(7);
+  });
 
-    mazo = [
+  it("debería elegir otra cosa", () => {
+    let mazo = [
       new Carta(10, "Diamantes"),
       new Carta(9, "Diamantes"),
       new Carta(9, "Diamantes"),
@@ -35,17 +37,17 @@ describe("Reglas", () => {
       new Carta(1, "Diamantes")
     ];
 
-    reglas = new Reglas();
+    const reglas = new Reglas();
+    const actual = reglas.buscarMejorCombinacion(mazo);
 
-    expect(reglas.verResultados(mazo)).to.exist;
-    expect(reglas.verResultados(mazo).cartas.length).equal(5);
-    expect(reglas.verResultados(mazo).cartas[0].valor).equal(10);
-    expect(reglas.verResultados(mazo).cartas[1].valor).equal(9);
-    expect(reglas.verResultados(mazo).cartas[2].valor).equal(8);
-    expect(reglas.verResultados(mazo).cartas[3].valor).equal(7);
-    expect(reglas.verResultados(mazo).cartas[4].valor).equal(6);
-    expect(reglas.verResultados(mazo).puntajeBase).equal(8);
-    expect(reglas.verResultados(mazo).puntajeIgualado).equal(10);
+    expect(actual).to.exist;
+    expect(actual.cartas.length).equal(5);
+    expect(actual.cartas[0].valor).equal(10);
+    expect(actual.cartas[1].valor).equal(9);
+    expect(actual.cartas[2].valor).equal(8);
+    expect(actual.cartas[3].valor).equal(7);
+    expect(actual.cartas[4].valor).equal(6);
+    expect(actual.ranking).equal(8);
     expect(mazo.length).equal(7);
   });
 });

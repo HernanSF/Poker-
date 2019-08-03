@@ -16,8 +16,8 @@ describe("Pierna", () => {
 
     let pierna = new Pierna(mazo);
 
-    expect(pierna.cartas.length).equal(3);
+    expect(pierna.cartas.length).equal(5);
     expect(pierna.cartas[0].valor).equal(7);
-    expect(mazo.length).equal(4);
+    expect(mazo.length).equal(2);
   });
 });

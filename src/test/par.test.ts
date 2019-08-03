@@ -16,9 +16,9 @@ describe("Par", () => {
 
     let par = new Par(mazo);
 
-    expect(par.cartas.length).equal(2);
+    expect(par.cartas.length).equal(5);
     expect(par.cartas[0].valor).equal(7);
-    expect(mazo.length).equal(5);
+    expect(mazo.length).equal(2);
   });
   it("debería ignorar doble par", () => {
     let mazo = [
@@ -33,9 +33,9 @@ describe("Par", () => {
 
     let par = new Par(mazo);
 
-    expect(par.cartas.length).equal(2);
+    expect(par.cartas.length).equal(5);
     expect(par.cartas[0].valor).equal(7);
-    expect(mazo.length).equal(5);
+    expect(mazo.length).equal(2);
   });
 
   it("debería ignorar una pierna", () => {
@@ -50,8 +50,8 @@ describe("Par", () => {
 
     let par = new Par(mazo);
 
-    expect(par.cartas.length).equal(0);
-    expect(mazo.length).equal(6);
+    expect(par.cartas.length).equal(5);
+    expect(mazo.length).equal(1);
 
   });
 });

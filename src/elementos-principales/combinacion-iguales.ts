@@ -2,7 +2,7 @@ import { Combinacion } from "./combinacion";
 import { Carta } from "./carta";
 
 export class CombinacionIguales extends Combinacion {
-  public puntajeBase: number;
+  public ranking: number;
   
   public constructor(mano: Carta[], distancia: number) {
     super();

@@ -1,39 +1,45 @@
-import { EscaleraColor } from "../combinaciones-de-poker/escalera-color";
-import { Poker } from "../combinaciones-de-poker/poker";
-import { Full } from "../combinaciones-de-poker/full";
-import { Color } from "../combinaciones-de-poker/color";
-import { Escalera } from "../combinaciones-de-poker/escalera";
-import { Pierna } from "../combinaciones-de-poker/pierna";
-import { DoblePar } from "../combinaciones-de-poker/doble-par";
-import { Par } from "../combinaciones-de-poker/par";
 import { CartaMasAlta } from "../combinaciones-de-poker/carta-mas-alta";
+import { Color } from "../combinaciones-de-poker/color";
+import { DoblePar } from "../combinaciones-de-poker/doble-par";
+import { Escalera } from "../combinaciones-de-poker/escalera";
+import { EscaleraColor } from "../combinaciones-de-poker/escalera-color";
+import { Full } from "../combinaciones-de-poker/full";
+import { Par } from "../combinaciones-de-poker/par";
+import { Pierna } from "../combinaciones-de-poker/pierna";
+import { Poker } from "../combinaciones-de-poker/poker";
 import { Carta } from "./carta";
 import { Combinacion } from "./combinacion";
 
 export class Reglas {
+  public buscarMejorCombinacion(mano: Carta[]): Combinacion {
+    const reglas = [
+      (unaMano) => new EscaleraColor(unaMano),
+      (unaMano) => new Poker(unaMano),
+      (unaMano) => new Full(unaMano),
+      (unaMano) => new Color(unaMano),
+      (unaMano) => new Escalera(unaMano),
+      (unaMano) => new Pierna(unaMano),
+      (unaMano) => new DoblePar(unaMano),
+      (unaMano) => new Par(unaMano),
+      (unaMano) => new CartaMasAlta(unaMano, 5)
+    ];
 
-  public verResultados(mano: Carta[]): Combinacion {
-    const manoClonada = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const escaleraColor = new EscaleraColor(manoClonada);
-    const manoClonada1 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const poker = new Poker(manoClonada1);
-    const manoClonada2 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const full = new Full(manoClonada2);
-    const manoClonada3 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const color = new Color(manoClonada3);
-    const manoClonada4 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const escalera = new Escalera(manoClonada4);
-    const manoClonada5 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const pierna = new Pierna(manoClonada5);
-    const manoClonada6 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const doblePar = new DoblePar(manoClonada6);
-    const manoClonada7 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const par = new Par(manoClonada7);
-    const manoClonada8 = mano.slice(0).sort((a, b) => b.valor - a.valor);
-    const cartaAlta = new CartaMasAlta(manoClonada8, 5);
+    let mejorCombinacion: Combinacion;
+    let termine = false;
+    let index = 0;
+    while (!mejorCombinacion && !termine) {
+      const manoClonada = mano.slice(0);
+      const regla = reglas[index];
+      const combinacion = regla(manoClonada);
 
-    const posiblesManos = [escaleraColor, poker, full, color, escalera, pierna, doblePar, par, cartaAlta];
-    const manoEncontrada = posiblesManos.find((combinacion) => combinacion.cartas.length > 0);
-    return manoEncontrada;
+      if (combinacion.cartas.length > 0) {
+        mejorCombinacion = combinacion;
+      }
+
+      termine = index > reglas.length - 1;
+      index++;
+    }
+
+    return mejorCombinacion;
   }
 }

@@ -16,8 +16,8 @@ describe("Poker", () => {
 
     let actual = new Poker(mazo);
 
-    expect(actual.cartas.length).equal(4);
+    expect(actual.cartas.length).equal(5);
     expect(actual.cartas[0].valor).equal(7);
-    expect(mazo.length).equal(3);
+    expect(mazo.length).equal(2);
   });
 });

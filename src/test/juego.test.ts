@@ -1,6 +1,9 @@
 import { expect } from "chai";
 import { Carta } from "../elementos-principales/carta";
 import { Juego } from "../juego";
+import { Poker } from "../combinaciones-de-poker/poker";
+import { Pierna } from "../combinaciones-de-poker/pierna";
+import { EscaleraColor } from "../combinaciones-de-poker/escalera-color";
 
 describe("Juego", () => {
   describe("crearMazo", () => {
@@ -9,7 +12,7 @@ describe("Juego", () => {
       const game = new Juego();
 
       // Act
-      game.crearJugadores(1)
+      game.crearJugadores(1);
       const actual = game.mazo.cartas;
 
       // Assert
@@ -33,11 +36,11 @@ describe("Juego", () => {
         const cartasEnManoEsperadas = 2;
 
         // Act & Assert
-        game.crearJugadores(1)
+        game.crearJugadores(1);
         game.repartirCartasJugadores();
 
-        expect(game.jugadores[0].manoTotal.length).equal(cartasEnManoEsperadas, "Cartas en mano no son las esperadas");
-        game.jugadores[0].manoTotal.forEach((carta) => expect(carta).to.be.a("Object"));
+        expect(game.jugadores[0].mano.length).equal(cartasEnManoEsperadas, "Cartas en mano no son las esperadas");
+        game.jugadores[0].mano.forEach((carta) => expect(carta).to.be.a("Object"));
         expect(game.mazo.cartas.length).equal(
           cartasRestantesEsperadas,
           "Cartas restantes en el mazo no son las esperadas"
@@ -57,7 +60,7 @@ describe("Juego", () => {
       const game = new Juego();
 
       // Act & Assert
-      game.crearJugadores(1)
+      game.crearJugadores(1);
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -70,7 +73,7 @@ describe("Juego", () => {
       const game = new Juego();
 
       // Act & Assert
-      game.crearJugadores(1)
+      game.crearJugadores(1);
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -85,7 +88,7 @@ describe("Juego", () => {
       const game = new Juego();
 
       // Act & Assert
-      game.crearJugadores(1)
+      game.crearJugadores(1);
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -100,7 +103,7 @@ describe("Juego", () => {
       const game = new Juego();
 
       // Act & Assert
-      game.crearJugadores(1)
+      game.crearJugadores(1);
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       game.flop();
@@ -115,10 +118,143 @@ describe("Juego", () => {
       const game = new Juego();
 
       // Act & Assert
-      game.crearJugadores(1)
+      game.crearJugadores(1);
       game.repartirCartasJugadores();
       expect(game.manoCroupier.length).equal(0, "no hay cartas");
       expect(game.river.bind(game)).to.throw();
+    });
+  });
+
+  describe("busco ganador", () => {
+    it("deberia ganar poker", () => {
+      // Arrange
+      const game = new Juego();
+
+      // Act & Assert
+      game.crearJugadores(3);
+      game.jugadores[0].combinacion = new Poker([
+        new Carta(8, "diamantes"),
+        new Carta(8, "diamantes"),
+        new Carta(8, "diamantes"),
+        new Carta(8, "diamantes")
+      ]);
+      game.jugadores[1].combinacion = new Poker([
+        new Carta(6, "diamantes"),
+        new Carta(6, "diamantes"),
+        new Carta(6, "diamantes"),
+        new Carta(6, "diamantes")
+      ]);
+      game.jugadores[2].combinacion = new Poker([
+        new Carta(7, "diamantes"),
+        new Carta(7, "diamantes"),
+        new Carta(7, "diamantes"),
+        new Carta(7, "diamantes")
+      ]);
+
+      let ganadores = game.encontrarGanador(game.jugadores);
+      expect(ganadores.length).equal(1);
+    });
+
+    describe("busco ganador", () => {
+      it("deberia ganar poker", () => {
+        // Arrange
+        const game = new Juego();
+
+        // Act & Assert
+        game.crearJugadores(3);
+        game.jugadores[0].combinacion = new Poker([
+          new Carta(8, "diamantes"),
+          new Carta(8, "diamantes"),
+          new Carta(8, "diamantes"),
+          new Carta(8, "diamantes"),
+          new Carta(6, "treboles")
+        ]);
+        game.jugadores[1].combinacion = new Poker([
+          new Carta(6, "diamantes"),
+          new Carta(6, "diamantes"),
+          new Carta(6, "diamantes"),
+          new Carta(6, "diamantes"),
+          new Carta(6, "diamantes")
+        ]);
+        game.jugadores[2].combinacion = new Poker([
+          new Carta(8, "diamantes"),
+          new Carta(8, "diamantes"),
+          new Carta(8, "diamantes"),
+          new Carta(8, "diamantes"),
+          new Carta(9, "treboles")
+        ]);
+
+        let ganadores = game.encontrarGanador(game.jugadores);
+        expect(ganadores.length).equal(1);
+
+        describe("busco ganador", () => {
+          it("deberia ganar poker", () => {
+            // Arrange
+            const game = new Juego();
+
+            // Act & Assert
+            game.crearJugadores(3);
+            game.jugadores[0].combinacion = new Poker([
+              new Carta(8, "diamantes"),
+              new Carta(8, "diamantes"),
+              new Carta(8, "diamantes"),
+              new Carta(8, "diamantes"),
+              new Carta(9, "treboles")
+            ]);
+            game.jugadores[1].combinacion = new Pierna([
+              new Carta(6, "diamantes"),
+              new Carta(6, "diamantes"),
+              new Carta(6, "diamantes"),
+              new Carta(5, "diamantes"),
+              new Carta(3, "diamantes")
+            ]);
+            game.jugadores[2].combinacion = new Poker([
+              new Carta(8, "diamantes"),
+              new Carta(8, "diamantes"),
+              new Carta(8, "diamantes"),
+              new Carta(8, "diamantes"),
+              new Carta(9, "treboles")
+            ]);
+
+            let ganadores = game.encontrarGanador(game.jugadores);
+            expect(ganadores.length).equal(2);
+
+            describe("busco ganador", () => {
+              it("deberia ganar poker", () => {
+                // Arrange
+                const game = new Juego();
+
+                // Act & Assert
+                game.crearJugadores(3);
+                game.jugadores[0].combinacion = new Poker([
+                  new Carta(8, "diamantes"),
+                  new Carta(8, "diamantes"),
+                  new Carta(8, "diamantes"),
+                  new Carta(8, "diamantes"),
+                  new Carta(9, "treboles")
+                ]);
+                game.jugadores[1].combinacion = new EscaleraColor([
+                  new Carta(6, "diamantes"),
+                  new Carta(5, "diamantes"),
+                  new Carta(4, "diamantes"),
+                  new Carta(3, "diamantes"),
+                  new Carta(2, "diamantes")
+                ]);
+                game.jugadores[2].combinacion = new Poker([
+                  new Carta(8, "diamantes"),
+                  new Carta(8, "diamantes"),
+                  new Carta(8, "diamantes"),
+                  new Carta(8, "diamantes"),
+                  new Carta(9, "treboles")
+                ]);
+
+                let ganadores = game.encontrarGanador(game.jugadores);
+                expect(ganadores.length).equal(1);
+              });
+            });
+          });
+        });
+      });
     });
   });
 });
