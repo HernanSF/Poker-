@@ -7,6 +7,8 @@ export class Poker extends CombinacionIguales {
 
   public constructor(mano: Carta[]) {
     super(mano, 3);
-    this.cartas = this.cartas.concat(new CartaMasAlta(mano, 5 - this.cartas.length).cartas);
+    if (this.cartas.length === 4) {
+      this.cartas = this.cartas.concat(new CartaMasAlta(mano, 5 - this.cartas.length).cartas);
+    }
   }
 }

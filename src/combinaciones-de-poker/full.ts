@@ -10,7 +10,8 @@ export class Full extends Combinacion {
     super();
     const primero = new Pierna(mano, false);
     const segundo = new Par(mano, false);
-
-    this.cartas = primero.cartas.concat(segundo.cartas);
+    if (this.cartas.length === 5) {
+      this.cartas = primero.cartas.concat(segundo.cartas);
+    }
   }
 }

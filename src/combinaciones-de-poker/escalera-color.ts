@@ -11,8 +11,6 @@ export class EscaleraColor extends Escalera {
       const encontrePaloDiferente = this.cartas.find((carta) => carta.palo !== paloReferencia);
       if (encontrePaloDiferente !== undefined) {
         this.cartas = [];
-      } else {
-        this.puntajeIgualado = this.cartas[0].valor;
       }
     } else {
       this.cartas = [];

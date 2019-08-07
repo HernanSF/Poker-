@@ -17,7 +17,15 @@ describe("doble-par", () => {
     let actual = new DoblePar(mazo);
 
     expect(actual.cartas.length).equal(5);
-    expect(actual.cartas[0].valor).equal(7);
+    expect(actual.cartas[0].valor).equal(9);
+    expect(actual.cartas[1].valor).equal(9);
+    expect(actual.cartas[2].valor).equal(7);
+    expect(actual.cartas[3].valor).equal(7);
+    expect(actual.cartas[4].valor).equal(8);
+
+
+
+
     expect(mazo.length).equal(2);
   });
 });

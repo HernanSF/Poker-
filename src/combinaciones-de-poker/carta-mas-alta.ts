@@ -6,6 +6,7 @@ export class CartaMasAlta extends Combinacion {
 
   public constructor(mano: Carta[], cantidad: number) {
     super();
+    mano.sort((a, b) => b.valor - a.valor);
     this.cartas = this.cartas.concat(mano.splice(0, cantidad));
   }
 }

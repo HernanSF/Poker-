@@ -86,7 +86,7 @@ export class Juego {
     );
 
     if (posiblesGanadores.length === 1) {
-     return posiblesGanadores;
+      return posiblesGanadores;
     } else {
       let index = 0;
       let termine = false;
@@ -103,57 +103,13 @@ export class Juego {
 
       return posiblesGanadores;
     }
-
-    // Ya cada jugador tiene su mejor combinación, ahora hay que ordenar jugadores por combinacion y de ahí buscar los que son iguales. Los iguales comparar sus cartas y decidir ganador
-
-    // if (typeof combinacionJugador === typeof otraCombinacion) {
-    //   while(!termine) {
-    //     const carta = combinacionJugador.cartas[index];
-    //     const otraCarta = otraCombinacion.cartas[index];
-
-    //     if (carta.valor > otraCarta.valor) {
-
-    //     }
-
-    //   }
-    // }
-    // combinacionJugador.cartas;
-
-    // 1.4897;
-
-    // // 1400 vs 1300
-
-    // jugador.manoFinal = combinacionJugador.cartas;
-
-    // diferencia.sort((a, b) => b.valor - a.valor);
-    // jugador.puntaje.push(reglas.buscarMejorCombinacion(jugador.manoTotal).puntajeBase);
-    // jugador.puntaje.push(reglas.buscarMejorCombinacion(jugador.manoTotal).puntajeIgualado);
-    // if (jugador.manoFinal.length !== 5) {
-    //   jugador.manoFinal = jugador.manoFinal.concat(diferencia.slice(0, 5 - jugador.manoFinal.length));
-    //   let longitud = diferencia.slice(0, 5 - jugador.manoFinal.length).length;
-    //   let suma = 0;
-    //   while (--longitud || longitud !== 0) {
-    //     suma += diferencia.slice(0, 5 - jugador.manoFinal.length)[longitud].valor;
-    //   }
-    //   jugador.puntaje.push(suma);
-    // }
   }
 
   private mejorCombinacionJugadores() {
     for (const jugador of this.jugadores) {
       const reglas = new Reglas();
       const combinacionJugador = reglas.buscarMejorCombinacion(jugador.mano);
-      // const diferencia = jugador.mano.filter((x) => !jugador.combinacion.includes(x));
-      // // const cartaMasAlta = new CartaMasAlta(diferencia, 5 - combinacionJugador.cartas.length);
       jugador.combinacion = combinacionJugador;
     }
   }
-
-  //ordenar los jugadores por aquellos que tengan el mayor puntaje de base
-  //filtrar los que tengan el mismo puntaje que el primero
-  //si quedaron dos o mas jugadores repetir proceso pero ordenando por puntaje igualado
-  //filtrar los que tengan el mismo puntaje que el primero
-  //repetir proceso con puntaje de carta mas alta
-  //filtrar por ultima vez
-  //jugadores que quedan son ganadores
 }

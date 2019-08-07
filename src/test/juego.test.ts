@@ -220,7 +220,7 @@ describe("Juego", () => {
             expect(ganadores.length).equal(2);
 
             describe("busco ganador", () => {
-              it("deberia ganar poker", () => {
+              it("deberia ganar la/las mejores manos", () => {
                 // Arrange
                 const game = new Juego();
 

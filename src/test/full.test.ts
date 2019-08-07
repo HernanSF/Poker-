@@ -3,7 +3,6 @@ import { Full } from "../combinaciones-de-poker/full";
 import { Carta } from "../elementos-principales/carta";
 
 describe("Full", () => {
-  //un full son tres cartas del mismo valor y dos de otro valor
   it("debería elegir un full", () => {
     let mazo = [
       new Carta(7, "Diamantes"),
