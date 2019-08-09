@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { Carta } from "../elementos-principales/carta";
 import { Reglas } from "../elementos-principales/reglas";
 
-describe.only("Reglas", () => {
+describe("Reglas", () => {
   it("debería elegir escalera de color", () => {
     let mazo = [
       new Carta(10, "Diamantes"),
