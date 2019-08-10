@@ -7,7 +7,7 @@ export class DoblePar extends Combinacion {
   public ranking: number = 2;
 
   constructor(mano: Carta[]) {
-    super();
+    super(mano);
     let primero = new Par(mano, false);
     let segundo = new Par(mano, false);
     this.cartas = primero.cartas.concat(segundo.cartas);

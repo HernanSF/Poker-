@@ -6,8 +6,7 @@ export class Escalera extends Combinacion {
   public puntajeIgualado: number;
 
   public constructor(mano: Carta[], cantidadConsecutivos: number = 5) {
-    super();
-    mano.sort((a, b) => b.valor - a.valor);
+    super(mano);
     let index: number = 0;
     let consecutivos: number = 0;
     let termine: boolean = false;

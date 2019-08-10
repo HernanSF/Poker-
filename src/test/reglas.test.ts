@@ -11,7 +11,7 @@ describe("Reglas", () => {
       new Carta(8, "Diamantes"),
       new Carta(7, "Diamantes"),
       new Carta(6, "Diamantes"),
-      new Carta(1, "Diamantes")
+      new Carta(1, "Dimantes")
     ];
 
     let reglas = new Reglas();

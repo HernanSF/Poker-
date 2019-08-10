@@ -5,8 +5,7 @@ export class CartaMasAlta extends Combinacion {
   public ranking: number = 0;
 
   public constructor(mano: Carta[], cantidad: number) {
-    super();
-    mano.sort((a, b) => b.valor - a.valor);
+    super(mano);
     this.cartas = this.cartas.concat(mano.splice(0, cantidad));
   }
 }

@@ -3,6 +3,7 @@
         "baseUrl": ".",
         "target": "ES2016",
         "module": "commonjs",
+        "sourceMap": true,
         "outDir": "./lib"
     }
 }

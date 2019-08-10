@@ -5,8 +5,7 @@ export class CombinacionIguales extends Combinacion {
   public ranking: number;
 
   public constructor(mano: Carta[], distancia: number) {
-    super();
-    mano.sort((a, b) => b.valor - a.valor);
+    super(mano);
     let index: number = 0;
     let termine: boolean = false;
     let numeros: number[] = mano.map((carta) => carta.valor);

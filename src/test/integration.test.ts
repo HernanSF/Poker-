@@ -21,6 +21,9 @@ describe("Juego", () => {
     prueba.turn();
     expect(prueba.manoCroupier.length).equal(5, "deberia tener cinco cartas");
 
-    
+    prueba.finalizarPartida();
+
+    expect(prueba.juegoTerminado).equal(true);
+    expect(prueba.ganadores.length).greaterThan(0);
   });
 });

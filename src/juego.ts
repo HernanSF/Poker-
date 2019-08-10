@@ -2,8 +2,6 @@ import { Carta } from "./elementos-principales/carta";
 import { Jugador } from "./elementos-principales/jugador";
 import { Mazo } from "./elementos-principales/mazo";
 import { Reglas } from "./elementos-principales/reglas";
-import { CartaMasAlta } from "./combinaciones-de-poker/carta-mas-alta";
-import { Combinacion } from "./elementos-principales/combinacion";
 
 export class Juego {
   public mazo: Mazo;
@@ -11,6 +9,8 @@ export class Juego {
   public jugadores: Jugador[];
   public turno: number;
   public manoCroupier: Carta[];
+  public juegoTerminado: boolean = false;
+  public ganadores: Jugador[];
 
   constructor() {
     this.mazo = new Mazo();
@@ -19,6 +19,7 @@ export class Juego {
     this.turno = 0;
     this.manoCroupier = [];
   }
+
   crearJugadores(cantidadJugadores: number) {
     for (let i = 0; i < cantidadJugadores; i++) {
       const player = new Jugador();
@@ -46,10 +47,6 @@ export class Juego {
     }
     return this.jugadores;
   }
-
-  // there will be a betting function here
-
-  // draw stage
 
   public flop(): Carta[] {
     if (this.manoCroupier.length === 0) {
@@ -81,28 +78,32 @@ export class Juego {
 
   public encontrarGanador(jugadores: Jugador[]): Jugador[] {
     jugadores.sort((a, b) => b.combinacion.ranking - a.combinacion.ranking);
-    let posiblesGanadores = jugadores.filter(
-      (jugador) => jugadores[0].combinacion.ranking === jugador.combinacion.ranking
-    );
+    let ganadores = jugadores.filter((jugador) => jugadores[0].combinacion.ranking === jugador.combinacion.ranking);
 
-    if (posiblesGanadores.length === 1) {
-      return posiblesGanadores;
+    if (ganadores.length === 1) {
+      return ganadores;
     } else {
       let index = 0;
       let termine = false;
-      while (!termine && posiblesGanadores.length !== 1) {
-        posiblesGanadores.sort(
+      while (!termine && ganadores.length !== 1) {
+        ganadores.sort(
           (jugadorA, jugadorB) => jugadorB.combinacion.cartas[index].valor - jugadorA.combinacion.cartas[index].valor
         );
-        posiblesGanadores = posiblesGanadores.filter(
-          (jugador) => posiblesGanadores[0].combinacion.cartas[index].valor === jugador.combinacion.cartas[index].valor
+        ganadores = ganadores.filter(
+          (jugador) => ganadores[0].combinacion.cartas[index].valor === jugador.combinacion.cartas[index].valor
         );
         index++;
         termine = index === 5;
       }
 
-      return posiblesGanadores;
+      return ganadores;
     }
+  }
+
+  finalizarPartida() {
+    this.mejorCombinacionJugadores();
+    this.ganadores = this.encontrarGanador(this.jugadores);
+    this.juegoTerminado = true;
   }
 
   private mejorCombinacionJugadores() {
